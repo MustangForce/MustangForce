@@ -244,6 +244,7 @@ nav.elevated { box-shadow: 0 4px 40px rgba(0,0,0,0.4); }
   display: flex; flex-direction: column;
   padding: 64px 48px 0;
   background: var(--bg2);
+  width: 100%;
 }
 
 /* Animated background per build level */
@@ -253,17 +254,22 @@ nav.elevated { box-shadow: 0 4px 40px rgba(0,0,0,0.4); }
 }
 .hero-bg.lvl-beginner {
   background:
-    radial-gradient(ellipse 70% 80% at 80% 30%, rgba(245,166,35,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 70% at 75% 20%, rgba(245,166,35,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 50% at 90% 60%, rgba(45,201,126,0.08) 0%, transparent 45%),
     radial-gradient(ellipse 50% 60% at 20% 80%, rgba(45,201,126,0.05) 0%, transparent 50%);
 }
 .hero-bg.lvl-enthusiast {
   background:
-    radial-gradient(ellipse 70% 80% at 75% 30%, rgba(232,37,60,0.1) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 70% 25%, rgba(232,37,60,0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 50% at 90% 50%, rgba(232,37,60,0.08) 0%, transparent 45%),
+    radial-gradient(ellipse 35% 40% at 85% 75%, rgba(245,166,35,0.06) 0%, transparent 45%),
     radial-gradient(ellipse 50% 60% at 15% 80%, rgba(245,166,35,0.06) 0%, transparent 50%);
 }
 .hero-bg.lvl-track {
   background:
-    radial-gradient(ellipse 80% 100% at 70% 20%, rgba(232,37,60,0.15) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 70% at 65% 15%, rgba(232,37,60,0.18) 0%, transparent 50%),
+    radial-gradient(ellipse 45% 50% at 85% 45%, rgba(232,37,60,0.12) 0%, transparent 45%),
+    radial-gradient(ellipse 35% 40% at 90% 80%, rgba(232,37,60,0.08) 0%, transparent 40%),
     radial-gradient(ellipse 40% 50% at 10% 90%, rgba(232,37,60,0.08) 0%, transparent 50%);
 }
 
@@ -271,7 +277,7 @@ nav.elevated { box-shadow: 0 4px 40px rgba(0,0,0,0.4); }
   position: absolute; inset: 0; z-index: 0;
   background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
   background-size: 28px 28px;
-  mask-image: radial-gradient(ellipse 80% 100% at 60% 0%, black 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse 100% 100% at 50% 0%, black 0%, transparent 80%);
 }
 .hero-fade-bottom {
   position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
@@ -475,6 +481,58 @@ nav.elevated { box-shadow: 0 4px 40px rgba(0,0,0,0.4); }
   transition: all .2s;
 }
 .ymm-chip:hover { border-color: var(--red); color: var(--white); background: var(--red-soft); }
+
+/* Hero right side enhancements */
+.hero-right {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.hero-right-glow {
+  position: absolute;
+  width: 400px; height: 400px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(232,37,60,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+.hero-right-ring {
+  position: absolute;
+  width: 480px; height: 480px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(232,37,60,0.08);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: ring-spin 30s linear infinite;
+}
+.hero-right-ring::before {
+  content: '';
+  position: absolute; top: -3px; left: 50%;
+  width: 6px; height: 6px;
+  background: var(--red); border-radius: 50%;
+  box-shadow: 0 0 12px var(--red-glow);
+}
+@keyframes ring-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.hero-right-stats {
+  display: flex; gap: 10px; z-index: 2; flex-wrap: wrap; justify-content: center;
+}
+.hero-stat-pill {
+  padding: 8px 16px; border-radius: 100px;
+  background: rgba(22,24,31,0.7); backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  font-size: 12px; color: var(--muted); font-weight: 600;
+  white-space: nowrap;
+}
+.hero-stat-num { color: var(--white); font-family: var(--f-head); font-weight: 800; }
 
 /* Fitment pills below hero */
 .hero-fitments {
@@ -1021,6 +1079,8 @@ footer {
   .products-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-ymm-card { max-width: 480px; }
+  .hero-right-glow, .hero-right-ring { display: none; }
+  .hero-right-stats { justify-content: flex-start; }
   .split-section { grid-template-columns: 1fr; }
   .split-pane.consumer { border-right: none; border-bottom: 1px solid var(--border); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -1327,7 +1387,14 @@ footer {
     </div>
 
     <!-- RIGHT: YMM card -->
-    <div class="rv d3">
+    <div class="hero-right rv d3">
+      <div class="hero-right-glow"></div>
+      <div class="hero-right-ring"></div>
+      <div class="hero-right-stats">
+        <div class="hero-stat-pill"><span class="hero-stat-num">48K+</span> Parts Listed</div>
+        <div class="hero-stat-pill"><span class="hero-stat-num">400+</span> Brands</div>
+        <div class="hero-stat-pill"><span class="hero-stat-num">4.9★</span> Avg Rating</div>
+      </div>
       <div class="hero-ymm-card">
         <div class="ymm-card-title">
           <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;opacity:0.7;">
