@@ -1042,6 +1042,165 @@ footer {
   .hero-stats-row { display: none; }
   .footer-grid { grid-template-columns: 1fr; }
   .final-btns { flex-direction: column; align-items: center; }
+  .search-overlay { top: 56px; }
+}
+
+/* ═══════════════════════════════
+   TOAST NOTIFICATIONS
+═══════════════════════════════ */
+.toast-container {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  display: flex; flex-direction: column; gap: 8px;
+  pointer-events: none;
+}
+.toast {
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--r-md); padding: 14px 20px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 14px; color: var(--white);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  pointer-events: all;
+  transform: translateX(120%); opacity: 0;
+  animation: toast-in .4s var(--ease) forwards;
+  max-width: 360px;
+}
+.toast.toast-out {
+  animation: toast-out .3s var(--ease) forwards;
+}
+.toast-icon { font-size: 20px; flex-shrink: 0; }
+.toast-msg { line-height: 1.4; }
+.toast-close {
+  margin-left: auto; background: none; color: var(--muted);
+  font-size: 18px; padding: 0 0 0 8px; cursor: pointer;
+  transition: color .2s;
+}
+.toast-close:hover { color: var(--white); }
+@keyframes toast-in {
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes toast-out {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(120%); opacity: 0; }
+}
+
+/* Cart toast special styling */
+.toast-cart { border-left: 3px solid var(--green); }
+.toast-success { border-left: 3px solid var(--green); }
+.toast-info { border-left: 3px solid var(--amber); }
+
+/* ═══════════════════════════════
+   SEARCH OVERLAY
+═══════════════════════════════ */
+.search-overlay {
+  position: fixed; top: 68px; left: 0; right: 0; z-index: 600;
+  background: rgba(17,18,23,0.98);
+  backdrop-filter: blur(20px);
+  padding: 24px 48px 32px;
+  border-bottom: 1px solid var(--border2);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  transform: translateY(-20px); opacity: 0;
+  pointer-events: none;
+  transition: transform .3s var(--ease), opacity .3s var(--ease);
+}
+.search-overlay.open {
+  transform: translateY(0); opacity: 1;
+  pointer-events: all;
+}
+.search-input-wrap {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--r-md); padding: 4px 4px 4px 20px;
+  max-width: 680px; margin: 0 auto;
+}
+.search-input-wrap:focus-within { border-color: var(--red); }
+.search-input {
+  flex: 1; background: none; border: none; outline: none;
+  color: var(--white); font-family: var(--f-body); font-size: 16px;
+  padding: 12px 0;
+}
+.search-input::placeholder { color: var(--muted); }
+.search-close-btn {
+  background: var(--bg2); color: var(--muted); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 8px 14px;
+  font-family: var(--f-head); font-size: 12px; font-weight: 700;
+  cursor: pointer; transition: all .2s;
+}
+.search-close-btn:hover { color: var(--white); border-color: var(--border2); }
+.search-suggestions {
+  max-width: 680px; margin: 16px auto 0;
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.search-sug-label { width: 100%; font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.search-sug-chip {
+  padding: 8px 16px; border-radius: 100px;
+  background: var(--bg2); border: 1px solid var(--border);
+  font-size: 13px; color: var(--off); cursor: pointer;
+  transition: all .2s;
+}
+.search-sug-chip:hover { border-color: var(--red); color: var(--white); background: var(--red-soft); }
+
+/* ═══════════════════════════════
+   CART PREVIEW
+═══════════════════════════════ */
+.cart-preview {
+  position: fixed; top: 68px; right: 0; z-index: 600;
+  width: 380px; max-height: calc(100vh - 88px);
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: 0 0 0 var(--r-lg);
+  box-shadow: -8px 20px 60px rgba(0,0,0,0.5);
+  padding: 24px;
+  transform: translateX(100%); opacity: 0;
+  pointer-events: none;
+  transition: transform .3s var(--ease), opacity .3s var(--ease);
+  overflow-y: auto;
+}
+.cart-preview.open {
+  transform: translateX(0); opacity: 1;
+  pointer-events: all;
+}
+.cart-preview-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+}
+.cart-preview-title { font-family: var(--f-head); font-size: 18px; font-weight: 700; }
+.cart-preview-close {
+  background: none; color: var(--muted); font-size: 20px;
+  cursor: pointer; transition: color .2s;
+}
+.cart-preview-close:hover { color: var(--white); }
+.cart-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.cart-item-emoji { font-size: 28px; width: 48px; height: 48px; background: var(--bg2); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; }
+.cart-item-info { flex: 1; }
+.cart-item-name { font-family: var(--f-head); font-size: 13px; font-weight: 700; }
+.cart-item-price { font-size: 13px; color: var(--muted); }
+.cart-item-remove { background: none; color: var(--dim); font-size: 16px; cursor: pointer; transition: color .2s; }
+.cart-item-remove:hover { color: var(--red); }
+.cart-total {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 0 0; margin-top: 8px;
+}
+.cart-total-label { font-size: 14px; color: var(--muted); }
+.cart-total-val { font-family: var(--f-head); font-size: 22px; font-weight: 800; }
+.cart-checkout-btn {
+  width: 100%; margin-top: 16px;
+  background: var(--red); color: #fff;
+  font-family: var(--f-head); font-size: 15px; font-weight: 700;
+  padding: 14px; border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background .2s, transform .15s;
+}
+.cart-checkout-btn:hover { background: #c01a30; transform: translateY(-1px); }
+.cart-empty { text-align: center; padding: 40px 0; color: var(--muted); font-size: 14px; }
+.cart-empty-icon { font-size: 40px; margin-bottom: 12px; display: block; opacity: 0.4; }
+
+@media (max-width: 768px) {
+  .cart-preview { width: 100%; border-radius: 0; }
+  .toast-container { left: 16px; right: 16px; bottom: 16px; }
+  .toast { max-width: 100%; }
+  .search-overlay { padding: 20px 24px 28px; }
 }
 
 </style>
@@ -1050,12 +1209,12 @@ footer {
 
 <!-- ═══ ANNOUNCE BAR ═══ -->
 <div class="announce-bar">
-  <span>30-day commission-free for new manufacturers — <a href="#">Apply now</a></span>
+  <span>30-day commission-free for new manufacturers — <a href="#for-manufacturers">Apply now</a></span>
 </div>
 
 <!-- ═══ NAV ═══ -->
 <nav id="mainNav">
-  <a href="#" class="nav-logo">
+  <a href="#hero" class="nav-logo">
     <svg class="nav-logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <!-- Stylized horse head with speed lines -->
       <path d="M8 4C8 4 10 2 14 2C16 2 17 3 18 4L20 6C21 7 22 8 23 10C24 12 24 14 23 16L22 18C21 20 19 21 17 22L14 23C12 24 10 24 8 23C6 22 5 20 5 18V12C5 10 6 8 7 6L8 4Z" fill="currentColor" opacity="0.9"/>
@@ -1088,21 +1247,21 @@ footer {
       <option value="wheels">Wheels</option>
       <option value="electronics">Electronics</option>
     </select>
-    <button class="nav-ymm-btn">Find Parts</button>
+    <button class="nav-ymm-btn" onclick="handleSearch('nav')">Find Parts</button>
   </div>
 
   <div class="nav-links">
-    <a href="#" class="nav-link active">Shop</a>
-    <a href="#" class="nav-link">Brands</a>
-    <a href="#" class="nav-link">Build Guides</a>
-    <a href="#" class="nav-link">Community</a>
+    <a href="#products" class="nav-link active">Shop</a>
+    <a href="#brands" class="nav-link">Brands</a>
+    <a href="#guides" class="nav-link">Build Guides</a>
+    <a href="#reviews" class="nav-link">Community</a>
   </div>
 
   <div class="nav-actions">
-    <button class="nav-icon-btn" title="Search" onclick="document.getElementById('searchBar').focus()">🔍</button>
-    <button class="nav-icon-btn" title="Saved">♡</button>
-    <button class="nav-icon-btn" title="Cart" style="position:relative">
-      🛒 <span class="nav-cart-count">2</span>
+    <button class="nav-icon-btn" title="Search" onclick="toggleSearch()">🔍</button>
+    <button class="nav-icon-btn" title="Saved" onclick="showToast('Saved items will appear here once you heart products', '♡')">♡</button>
+    <button class="nav-icon-btn" id="cartBtn" title="Cart" style="position:relative" onclick="showCartPreview()">
+      🛒 <span class="nav-cart-count" id="cartCount">0</span>
     </button>
     <a href="#for-manufacturers" class="nav-btn-primary">Sell on MF</a>
   </div>
@@ -1160,10 +1319,10 @@ footer {
       </p>
 
       <div class="hero-cta rv d4">
-        <a href="#" class="btn-hero primary" id="heroCta">
+        <a href="#products" class="btn-hero primary" id="heroCta">
           Shop Parts <span class="arrow">→</span>
         </a>
-        <a href="#" class="btn-hero ghost">📹 Watch Build Videos</a>
+        <a href="#guides" class="btn-hero ghost">📹 Watch Build Videos</a>
       </div>
     </div>
 
@@ -1214,7 +1373,7 @@ footer {
           </div>
         </div>
 
-        <button class="ymm-search-full">🔍 Show Compatible Parts</button>
+        <button class="ymm-search-full" onclick="handleSearch('hero')">🔍 Show Compatible Parts</button>
 
         <div class="ymm-divider">or browse popular builds</div>
 
@@ -1277,7 +1436,7 @@ footer {
 </div>
 
 <!-- ═══ HOW IT WORKS ═══ -->
-<section class="sec how-section">
+<section class="sec how-section" id="how-it-works">
   <div class="sec-header">
     <div>
       <div class="sec-label rv">How MustangForce Works</div>
@@ -1307,58 +1466,58 @@ footer {
 </section>
 
 <!-- ═══ CATEGORIES ═══ -->
-<section class="sec cats-section">
+<section class="sec cats-section" id="categories">
   <div class="sec-header">
     <div>
       <div class="sec-label rv">Browse by Category</div>
       <h2 class="sec-h rv d1">What are you<br>upgrading today?</h2>
     </div>
-    <a href="#" class="link-arrow rv d2">View all categories</a>
+    <a href="#products" class="link-arrow rv d2">View all categories</a>
   </div>
   <div class="cats-grid">
-    <a href="#" class="cat-tile ct-engine rv">
+    <a href="#products" class="cat-tile ct-engine rv" data-filter="performance" onclick="filterFromCategory('Performance')">
       <div class="cat-tile-icon" style="background:var(--red-soft)">🔥</div>
       <div class="cat-tile-name">Engine &<br>Induction</div>
       <div class="cat-tile-count">2,840 parts</div>
       <div class="cat-tile-arrow">→</div>
     </a>
-    <a href="#" class="cat-tile ct-exhaust rv d1">
+    <a href="#products" class="cat-tile ct-exhaust rv d1" data-filter="performance" onclick="filterFromCategory('Performance')">
       <div class="cat-tile-icon" style="background:rgba(120,120,120,0.12)">💨</div>
       <div class="cat-tile-name">Exhaust<br>Systems</div>
       <div class="cat-tile-count">1,620 parts</div>
       <div class="cat-tile-arrow">→</div>
     </a>
-    <a href="#" class="cat-tile ct-suspend rv d2">
+    <a href="#products" class="cat-tile ct-suspend rv d2" data-filter="handling" onclick="filterFromCategory('Handling')">
       <div class="cat-tile-icon" style="background:rgba(59,130,246,0.12)">🔩</div>
       <div class="cat-tile-name">Suspension<br>& Handling</div>
       <div class="cat-tile-count">3,100 parts</div>
       <div class="cat-tile-arrow">→</div>
     </a>
-    <a href="#" class="cat-tile ct-wheels rv d3">
+    <a href="#products" class="cat-tile ct-wheels rv d3" data-filter="looks" onclick="filterFromCategory('Looks')">
       <div class="cat-tile-icon" style="background:var(--amber-soft)">🛞</div>
       <div class="cat-tile-name">Wheels<br>& Tires</div>
       <div class="cat-tile-count">4,200 parts</div>
       <div class="cat-tile-arrow">→</div>
     </a>
-    <a href="#" class="cat-tile ct-brakes rv d1">
+    <a href="#products" class="cat-tile ct-brakes rv d1" data-filter="performance" onclick="filterFromCategory('Performance')">
       <div class="cat-tile-icon" style="background:rgba(232,37,60,0.15)">🛑</div>
       <div class="cat-tile-name">Brakes<br>& Rotors</div>
       <div class="cat-tile-count">980 parts</div>
       <div class="cat-tile-arrow">→</div>
     </a>
-    <a href="#" class="cat-tile ct-exterior rv d2">
+    <a href="#products" class="cat-tile ct-exterior rv d2" data-filter="looks" onclick="filterFromCategory('Looks')">
       <div class="cat-tile-icon" style="background:var(--green-soft)">🏎</div>
       <div class="cat-tile-name">Exterior<br>Styling</div>
       <div class="cat-tile-count">5,800 parts</div>
       <div class="cat-tile-arrow">→</div>
     </a>
-    <a href="#" class="cat-tile ct-interior rv d3">
+    <a href="#products" class="cat-tile ct-interior rv d3" data-filter="looks" onclick="filterFromCategory('Looks')">
       <div class="cat-tile-icon" style="background:rgba(168,85,247,0.1)">🪑</div>
       <div class="cat-tile-name">Interior<br>Upgrades</div>
       <div class="cat-tile-count">2,100 parts</div>
       <div class="cat-tile-arrow">→</div>
     </a>
-    <a href="#" class="cat-tile ct-elec rv d4">
+    <a href="#products" class="cat-tile ct-elec rv d4" data-filter="value" onclick="filterFromCategory('Value')">
       <div class="cat-tile-icon" style="background:rgba(6,182,212,0.1)">⚡</div>
       <div class="cat-tile-name">Electronics<br>& Tuning</div>
       <div class="cat-tile-count">1,980 parts</div>
@@ -1368,7 +1527,7 @@ footer {
 </section>
 
 <!-- ═══ PRODUCTS ═══ -->
-<section class="sec products-section">
+<section class="sec products-section" id="products">
   <div class="sec-header">
     <div>
       <div class="sec-label rv">Featured This Week</div>
@@ -1382,16 +1541,16 @@ footer {
         <button class="filter-pill">Looks</button>
         <button class="filter-pill">Value</button>
       </div>
-      <a href="#" class="link-arrow rv d2">View all products</a>
+      <a href="#products" class="link-arrow rv d2">View all products</a>
     </div>
   </div>
 
-  <div class="products-grid">
-    <div class="prod-card rv">
+  <div class="products-grid" id="productsGrid">
+    <div class="prod-card rv" data-categories="performance,all">
       <div class="prod-img-wrap">
         <div class="prod-emoji">🔊</div>
         <span class="prod-tag tag-bestseller">Best Seller</span>
-        <div class="prod-heart" onclick="this.classList.toggle('loved');this.textContent=this.classList.contains('loved')?'♥':'♡'">♡</div>
+        <div class="prod-heart" onclick="toggleHeart(this, event)">♡</div>
       </div>
       <div class="prod-body">
         <div class="prod-brand">Borla Performance</div>
@@ -1403,15 +1562,15 @@ footer {
         <div class="prod-price-wrap">
           <span class="prod-price">$1,299</span>
         </div>
-        <button class="prod-add-btn">Add to Cart</button>
+        <button class="prod-add-btn" onclick="addToCart('Borla ATAK Cat-Back Exhaust', 1299)">Add to Cart</button>
       </div>
     </div>
 
-    <div class="prod-card rv d1">
+    <div class="prod-card rv d1" data-categories="handling,all">
       <div class="prod-img-wrap">
         <div class="prod-emoji">🌀</div>
         <span class="prod-tag tag-new">New Drop</span>
-        <div class="prod-heart" onclick="this.classList.toggle('loved');this.textContent=this.classList.contains('loved')?'♥':'♡'">♡</div>
+        <div class="prod-heart" onclick="toggleHeart(this, event)">♡</div>
       </div>
       <div class="prod-body">
         <div class="prod-brand">Steeda Autosports</div>
@@ -1421,15 +1580,15 @@ footer {
       </div>
       <div class="prod-footer">
         <div class="prod-price-wrap"><span class="prod-price">$389</span></div>
-        <button class="prod-add-btn">Add to Cart</button>
+        <button class="prod-add-btn" onclick="addToCart('Steeda Lowering Springs', 389)">Add to Cart</button>
       </div>
     </div>
 
-    <div class="prod-card rv d2">
+    <div class="prod-card rv d2" data-categories="performance,value,all">
       <div class="prod-img-wrap">
         <div class="prod-emoji">💨</div>
         <span class="prod-tag tag-toprated">Top Rated</span>
-        <div class="prod-heart" onclick="this.classList.toggle('loved');this.textContent=this.classList.contains('loved')?'♥':'♡'">♡</div>
+        <div class="prod-heart" onclick="toggleHeart(this, event)">♡</div>
       </div>
       <div class="prod-body">
         <div class="prod-brand">Roush Performance</div>
@@ -1442,14 +1601,14 @@ footer {
           <span class="prod-price">$449</span>
           <span class="prod-price-was">$499</span>
         </div>
-        <button class="prod-add-btn">Add to Cart</button>
+        <button class="prod-add-btn" onclick="addToCart('Roush Phase 2 CAI', 449)">Add to Cart</button>
       </div>
     </div>
 
-    <div class="prod-card rv d3">
+    <div class="prod-card rv d3" data-categories="handling,looks,all">
       <div class="prod-img-wrap">
         <div class="prod-emoji">🛞</div>
-        <div class="prod-heart" onclick="this.classList.toggle('loved');this.textContent=this.classList.contains('loved')?'♥':'♡'">♡</div>
+        <div class="prod-heart" onclick="toggleHeart(this, event)">♡</div>
       </div>
       <div class="prod-body">
         <div class="prod-brand">KW Suspensions</div>
@@ -1459,27 +1618,27 @@ footer {
       </div>
       <div class="prod-footer">
         <div class="prod-price-wrap"><span class="prod-price">$2,149</span></div>
-        <button class="prod-add-btn">Add to Cart</button>
+        <button class="prod-add-btn" onclick="addToCart('KW V3 Coilovers', 2149)">Add to Cart</button>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══ BUILD GUIDE BANNER ═══ -->
-<div class="guide-banner rv">
+<div class="guide-banner rv" id="guides">
   <div>
     <div class="guide-banner-eyebrow">✨ Not sure where to start?</div>
     <div class="guide-banner-h">We'll guide your first build.</div>
     <div class="guide-banner-sub">New to modifying Mustangs? Our free build guides walk you through the best first upgrades for every budget — from a $300 air intake to a full Stage 2 power package.</div>
   </div>
   <div class="guide-btns">
-    <a href="#" class="btn-amber">📖 Start Your Build Guide →</a>
-    <a href="#" class="btn-link">Watch on YouTube →</a>
+    <a href="#hero" class="btn-amber" onclick="scrollToYMM()">📖 Start Your Build Guide →</a>
+    <a href="https://youtube.com" target="_blank" rel="noopener" class="btn-link">Watch on YouTube →</a>
   </div>
 </div>
 
 <!-- ═══ BRANDS ═══ -->
-<section class="brands-section">
+<section class="brands-section" id="brands">
   <div style="text-align:center;margin-bottom:28px">
     <div class="sec-label rv" style="justify-content:center">Trusted Brands</div>
     <h2 class="sec-h rv d1" style="margin-bottom:6px">400+ Verified Manufacturers</h2>
@@ -1542,7 +1701,7 @@ footer {
         </div>
       </div>
     </div>
-    <a href="#" class="btn-hero primary" style="width:fit-content">Shop All Parts →</a>
+    <a href="#products" class="btn-hero primary" style="width:fit-content">Shop All Parts →</a>
   </div>
 
   <!-- Manufacturer side -->
@@ -1606,18 +1765,18 @@ footer {
       </div>
     </div>
 
-    <a href="#" class="btn-hero primary rv d4" style="width:fit-content">Apply to List Your Brand →</a>
+    <a href="#cta" class="btn-hero primary rv d4" style="width:fit-content" onclick="showToast('Applications opening soon — join the waitlist!', '🔧')">Apply to List Your Brand →</a>
   </div>
 </section>
 
 <!-- ═══ REVIEWS ═══ -->
-<section class="sec reviews-section">
+<section class="sec reviews-section" id="reviews">
   <div class="sec-header">
     <div>
       <div class="sec-label rv">Real Reviews</div>
       <h2 class="sec-h rv d1">Don't take our word for it.</h2>
     </div>
-    <a href="#" class="link-arrow rv d2">See all reviews</a>
+    <a href="#reviews" class="link-arrow rv d2" onclick="showToast('More reviews coming soon as builders share their experiences', '⭐')">See all reviews</a>
   </div>
   <div class="reviews-grid">
     <div class="review-card rv">
@@ -1657,12 +1816,12 @@ footer {
 </section>
 
 <!-- ═══ FINAL CTA ═══ -->
-<section class="final-cta">
+<section class="final-cta" id="cta">
   <div class="sec-label rv" style="justify-content:center">Ready to build?</div>
   <h2 class="final-h rv d1">Your Mustang.<br><span>Your way.</span></h2>
   <p class="final-sub rv d2">25,000+ parts from verified manufacturers. Every generation, 1964 to today. Fit guaranteed, shipped direct.</p>
   <div class="final-btns rv d3">
-    <a href="#" class="btn-white">🔍 Find Parts for My Mustang</a>
+    <a href="#hero" class="btn-white" onclick="scrollToYMM()">🔍 Find Parts for My Mustang</a>
     <a href="#for-manufacturers" class="btn-outline-white">Sell on MustangForce →</a>
   </div>
 </section>
@@ -1688,57 +1847,101 @@ footer {
       </div>
       <p class="footer-desc">The direct-to-consumer marketplace for Mustang parts. Every generation, every build — shipped straight from the manufacturer to your door.</p>
       <div class="footer-socials">
-        <a href="#" class="fsoc">YT</a>
-        <a href="#" class="fsoc">IG</a>
-        <a href="#" class="fsoc">FB</a>
-        <a href="#" class="fsoc">TK</a>
-        <a href="#" class="fsoc">X</a>
+        <a href="https://youtube.com" target="_blank" rel="noopener" class="fsoc" title="YouTube">YT</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="fsoc" title="Instagram">IG</a>
+        <a href="https://facebook.com" target="_blank" rel="noopener" class="fsoc" title="Facebook">FB</a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener" class="fsoc" title="TikTok">TK</a>
+        <a href="https://x.com" target="_blank" rel="noopener" class="fsoc" title="X (Twitter)">X</a>
       </div>
     </div>
     <div class="footer-col">
       <h5>Shop</h5>
       <ul>
-        <li><a href="#">Engine & Induction</a></li>
-        <li><a href="#">Exhaust Systems</a></li>
-        <li><a href="#">Suspension</a></li>
-        <li><a href="#">Brakes</a></li>
-        <li><a href="#">Exterior</a></li>
-        <li><a href="#">Wheels & Tires</a></li>
-        <li><a href="#">Electronics</a></li>
+        <li><a href="#categories">Engine & Induction</a></li>
+        <li><a href="#categories">Exhaust Systems</a></li>
+        <li><a href="#categories">Suspension</a></li>
+        <li><a href="#categories">Brakes</a></li>
+        <li><a href="#categories">Exterior</a></li>
+        <li><a href="#categories">Wheels & Tires</a></li>
+        <li><a href="#categories">Electronics</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Explore</h5>
       <ul>
-        <li><a href="#">Build Guides</a></li>
-        <li><a href="#">YouTube Channel</a></li>
-        <li><a href="#">Community Forum</a></li>
-        <li><a href="#">Brand Directory</a></li>
-        <li><a href="#">New Arrivals</a></li>
-        <li><a href="#">On Sale</a></li>
+        <li><a href="#guides">Build Guides</a></li>
+        <li><a href="https://youtube.com" target="_blank" rel="noopener">YouTube Channel</a></li>
+        <li><a href="#reviews">Community Forum</a></li>
+        <li><a href="#brands">Brand Directory</a></li>
+        <li><a href="#products">New Arrivals</a></li>
+        <li><a href="#products">On Sale</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Help & Company</h5>
       <ul>
-        <li><a href="#">Fitment Help</a></li>
-        <li><a href="#">Track Your Order</a></li>
-        <li><a href="#">Returns Portal</a></li>
-        <li><a href="#">Sell on MustangForce</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#how-it-works">Fitment Help</a></li>
+        <li><a href="#" onclick="showToast('Order tracking coming soon', '📦');return false;">Track Your Order</a></li>
+        <li><a href="#" onclick="showToast('Returns portal coming soon', '↩️');return false;">Returns Portal</a></li>
+        <li><a href="#for-manufacturers">Sell on MustangForce</a></li>
+        <li><a href="#hero">About Us</a></li>
+        <li><a href="#" onclick="showToast('Contact form coming soon — email hello@mustangforce.com', '✉️');return false;">Contact</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="footer-legal">© 2025 MustangForce LLC. Not affiliated with Ford Motor Company. Mustang® is a registered trademark of Ford Motor Company.</div>
     <div class="footer-legal-links">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="#">Cookies</a>
+      <a href="#" onclick="showToast('Privacy policy coming soon', '🔒');return false;">Privacy</a>
+      <a href="#" onclick="showToast('Terms of service coming soon', '📋');return false;">Terms</a>
+      <a href="#" onclick="showToast('Cookie policy coming soon', '🍪');return false;">Cookies</a>
     </div>
   </div>
 </footer>
+
+<!-- ═══ TOAST CONTAINER ═══ -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ═══ SEARCH OVERLAY ═══ -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-input-wrap">
+    <span style="font-size:18px;color:var(--muted)">🔍</span>
+    <input class="search-input" id="searchInput" type="text" placeholder="Search parts, brands, or categories..." autocomplete="off">
+    <button class="search-close-btn" onclick="toggleSearch()">ESC</button>
+  </div>
+  <div class="search-suggestions">
+    <div class="search-sug-label">Popular searches</div>
+    <span class="search-sug-chip" onclick="searchFor(this)">Cold Air Intake</span>
+    <span class="search-sug-chip" onclick="searchFor(this)">Exhaust System</span>
+    <span class="search-sug-chip" onclick="searchFor(this)">Coilovers</span>
+    <span class="search-sug-chip" onclick="searchFor(this)">GT500 Parts</span>
+    <span class="search-sug-chip" onclick="searchFor(this)">Dark Horse Mods</span>
+    <span class="search-sug-chip" onclick="searchFor(this)">Fox Body Restoration</span>
+    <span class="search-sug-chip" onclick="searchFor(this)">Brake Kit</span>
+    <span class="search-sug-chip" onclick="searchFor(this)">Lowering Springs</span>
+  </div>
+</div>
+
+<!-- ═══ CART PREVIEW ═══ -->
+<div class="cart-preview" id="cartPreview">
+  <div class="cart-preview-header">
+    <div class="cart-preview-title">Your Cart</div>
+    <button class="cart-preview-close" onclick="closeCartPreview()">✕</button>
+  </div>
+  <div id="cartItems">
+    <div class="cart-empty">
+      <span class="cart-empty-icon">🛒</span>
+      Your cart is empty.<br>Browse parts and add items to get started.
+    </div>
+  </div>
+  <div id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span class="cart-total-label">Subtotal</span>
+      <span class="cart-total-val" id="cartTotal">$0</span>
+    </div>
+    <button class="cart-checkout-btn" onclick="showToast('Checkout coming soon — join the waitlist for early access!', '🚀')">Proceed to Checkout →</button>
+  </div>
+</div>
 
 <script>
 /* ═══════════════════════════════════════════════════════
@@ -2258,24 +2461,295 @@ const mr = document.getElementById('marginRows');
 if (mr) mrowObs.observe(mr);
 
 /* ═══════════════════════════════════════════════════════
-   FILTER PILLS
+   FILTER PILLS (functional product filtering)
 ═══════════════════════════════════════════════════════ */
 document.querySelectorAll('.filter-pill').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('on'));
     btn.classList.add('on');
+    const filter = btn.textContent.trim().toLowerCase();
+    filterProducts(filter);
+  });
+});
+
+function filterProducts(filter) {
+  const cards = document.querySelectorAll('.prod-card');
+  cards.forEach(card => {
+    const cats = (card.dataset.categories || 'all').split(',');
+    const show = filter === 'all' || cats.includes(filter);
+    card.style.transition = 'opacity .3s, transform .3s';
+    if (show) {
+      card.style.opacity = '1';
+      card.style.transform = '';
+      card.style.display = '';
+    } else {
+      card.style.opacity = '0';
+      card.style.transform = 'scale(0.95)';
+      setTimeout(() => { if (!card.style.opacity || card.style.opacity === '0') card.style.display = 'none'; }, 300);
+    }
+  });
+}
+
+function filterFromCategory(filterName) {
+  setTimeout(() => {
+    const pills = document.querySelectorAll('.filter-pill');
+    pills.forEach(p => {
+      p.classList.remove('on');
+      if (p.textContent.trim() === filterName) p.classList.add('on');
+    });
+    filterProducts(filterName.toLowerCase());
+  }, 600);
+}
+
+/* ═══════════════════════════════════════════════════════
+   SMOOTH SCROLL (with nav active state)
+═══════════════════════════════════════════════════════ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+      if (a.classList.contains('nav-link')) {
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        a.classList.add('active');
+      }
+    }
   });
 });
 
 /* ═══════════════════════════════════════════════════════
-   SMOOTH SCROLL
+   TOAST NOTIFICATION SYSTEM
 ═══════════════════════════════════════════════════════ */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+function showToast(message, icon, type) {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast' + (type ? ' toast-' + type : '');
+  toast.innerHTML = '<span class="toast-icon">' + icon + '</span><span class="toast-msg">' + message + '</span><button class="toast-close" onclick="dismissToast(this.parentElement)">✕</button>';
+  container.appendChild(toast);
+  setTimeout(() => dismissToast(toast), 4000);
+}
+
+function dismissToast(toast) {
+  if (!toast || toast.classList.contains('toast-out')) return;
+  toast.classList.add('toast-out');
+  setTimeout(() => toast.remove(), 300);
+}
+
+/* ═══════════════════════════════════════════════════════
+   CART SYSTEM
+═══════════════════════════════════════════════════════ */
+let cart = [];
+
+function addToCart(name, price) {
+  const existing = cart.find(item => item.name === name);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ name: name, price: price, qty: 1 });
+  }
+  updateCartUI();
+  showToast(name + ' added to cart', '✅', 'cart');
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCartUI();
+  renderCartPreview();
+}
+
+function updateCartUI() {
+  const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+  const countEl = document.getElementById('cartCount');
+  countEl.textContent = totalQty;
+  countEl.style.display = totalQty > 0 ? 'flex' : 'none';
+}
+
+function renderCartPreview() {
+  const itemsEl = document.getElementById('cartItems');
+  const footerEl = document.getElementById('cartFooter');
+  const totalEl = document.getElementById('cartTotal');
+
+  if (cart.length === 0) {
+    itemsEl.innerHTML = '<div class="cart-empty"><span class="cart-empty-icon">🛒</span>Your cart is empty.<br>Browse parts and add items to get started.</div>';
+    footerEl.style.display = 'none';
+    return;
+  }
+
+  const emojis = { 'Borla': '🔊', 'Steeda': '🌀', 'Roush': '💨', 'KW': '🛞' };
+  let html = '';
+  let total = 0;
+  cart.forEach((item, i) => {
+    const key = Object.keys(emojis).find(k => item.name.includes(k)) || '';
+    const emoji = emojis[key] || '📦';
+    total += item.price * item.qty;
+    html += '<div class="cart-item">' +
+      '<div class="cart-item-emoji">' + emoji + '</div>' +
+      '<div class="cart-item-info"><div class="cart-item-name">' + item.name + (item.qty > 1 ? ' ×' + item.qty : '') + '</div>' +
+      '<div class="cart-item-price">$' + (item.price * item.qty).toLocaleString() + '</div></div>' +
+      '<button class="cart-item-remove" onclick="removeFromCart(' + i + ')">✕</button></div>';
+  });
+  itemsEl.innerHTML = html;
+  footerEl.style.display = 'block';
+  totalEl.textContent = '$' + total.toLocaleString();
+}
+
+function showCartPreview() {
+  const preview = document.getElementById('cartPreview');
+  const isOpen = preview.classList.contains('open');
+  closeSearchOverlay();
+  if (isOpen) {
+    closeCartPreview();
+  } else {
+    renderCartPreview();
+    preview.classList.add('open');
+  }
+}
+
+function closeCartPreview() {
+  document.getElementById('cartPreview').classList.remove('open');
+}
+
+/* ═══════════════════════════════════════════════════════
+   SEARCH OVERLAY
+═══════════════════════════════════════════════════════ */
+let searchOpen = false;
+
+function toggleSearch() {
+  searchOpen = !searchOpen;
+  const overlay = document.getElementById('searchOverlay');
+  closeCartPreview();
+  if (searchOpen) {
+    overlay.classList.add('open');
+    setTimeout(() => document.getElementById('searchInput').focus(), 100);
+  } else {
+    closeSearchOverlay();
+  }
+}
+
+function closeSearchOverlay() {
+  searchOpen = false;
+  document.getElementById('searchOverlay').classList.remove('open');
+  document.getElementById('searchInput').value = '';
+}
+
+function searchFor(chip) {
+  const term = chip.textContent.trim();
+  document.getElementById('searchInput').value = term;
+  showToast('Showing results for "' + term + '"', '🔍', 'info');
+  closeSearchOverlay();
+  document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+}
+
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closeSearchOverlay(); return; }
+  if (e.key === 'Enter' && this.value.trim()) {
+    const term = this.value.trim();
+    showToast('Showing results for "' + term + '"', '🔍', 'info');
+    closeSearchOverlay();
+    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    if (searchOpen) closeSearchOverlay();
+    closeCartPreview();
+  }
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    toggleSearch();
+  }
+});
+
+/* ═══════════════════════════════════════════════════════
+   HEART / SAVE TOGGLE
+═══════════════════════════════════════════════════════ */
+function toggleHeart(el, event) {
+  event.stopPropagation();
+  el.classList.toggle('loved');
+  const isLoved = el.classList.contains('loved');
+  el.textContent = isLoved ? '♥' : '♡';
+  const name = el.closest('.prod-card').querySelector('.prod-name').textContent;
+  if (isLoved) {
+    showToast(name + ' saved to wishlist', '♥', 'success');
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   YMM SEARCH HANDLER
+═══════════════════════════════════════════════════════ */
+function handleSearch(source) {
+  const yearEl = document.getElementById(source === 'hero' ? 'heroYear' : 'navYear');
+  const modelEl = document.getElementById(source === 'hero' ? 'heroModel' : 'navModel');
+  const yearVal = yearEl.value;
+  const modelVal = modelEl.value;
+
+  if (!yearVal) {
+    showToast('Please select a year first', '⚠️', 'info');
+    yearEl.focus();
+    yearEl.style.borderColor = 'var(--amber)';
+    setTimeout(() => { yearEl.style.borderColor = ''; }, 2000);
+    return;
+  }
+
+  const yearLabel = yearEl.options[yearEl.selectedIndex].text;
+  const modelLabel = modelVal ? modelEl.options[modelEl.selectedIndex].text : 'All trims';
+
+  showToast('Searching parts for ' + yearLabel + ' — ' + modelLabel, '🔍', 'success');
+  document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ═══════════════════════════════════════════════════════
+   SCROLL TO YMM HELPER
+═══════════════════════════════════════════════════════ */
+function scrollToYMM() {
+  setTimeout(() => {
+    const card = document.querySelector('.hero-ymm-card');
+    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const yearSel = document.getElementById('heroYear');
+    yearSel.style.borderColor = 'var(--red)';
+    setTimeout(() => { yearSel.style.borderColor = ''; }, 2000);
+  }, 300);
+}
+
+/* ═══════════════════════════════════════════════════════
+   BRAND PILLS (clickable → filter)
+═══════════════════════════════════════════════════════ */
+document.querySelectorAll('.brand-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    const brand = pill.textContent.trim();
+    showToast('Browsing ' + brand + ' products', '🏷️', 'info');
+    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
   });
 });
+
+/* ═══════════════════════════════════════════════════════
+   GENERATION / FITMENT CHIPS
+═══════════════════════════════════════════════════════ */
+document.querySelectorAll('.fit-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const gen = chip.textContent.trim();
+    showToast('Browsing parts for ' + gen, '🚗', 'info');
+    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+/* ═══════════════════════════════════════════════════════
+   CLOSE OVERLAYS ON OUTSIDE CLICK
+═══════════════════════════════════════════════════════ */
+document.addEventListener('click', function(e) {
+  const cartPreview = document.getElementById('cartPreview');
+  const cartBtn = document.getElementById('cartBtn');
+  if (cartPreview.classList.contains('open') && !cartPreview.contains(e.target) && !cartBtn.contains(e.target)) {
+    closeCartPreview();
+  }
+});
+
+/* Init cart count display */
+updateCartUI();
 </script>
 </body>
 </html>
