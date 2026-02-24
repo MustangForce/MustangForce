@@ -54,14 +54,14 @@
    BASE
 ═══════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 body {
   background: var(--bg);
   color: var(--white);
   font-family: var(--f-body);
   font-weight: 400;
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -1099,15 +1099,13 @@ footer {
   .hero-ymm-card { max-width: 100%; }
   .hero-right { align-items: stretch; }
   .hero-right-glow, .hero-right-ring { display: none; }
+  .hero-brand-mark { display: none; }
   .hero-right-stats { justify-content: flex-start; }
   .split-section { grid-template-columns: 1fr; }
   .split-pane.consumer { border-right: none; border-bottom: 1px solid var(--border); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
-  /* Prevent horizontal overflow */
-  html, body { overflow-x: hidden; max-width: 100vw; }
-
   /* Announce bar */
   .announce-bar { padding: 8px 16px; font-size: 12px; gap: 8px; flex-wrap: wrap; }
   .announce-pill { font-size: 10px; padding: 2px 8px; }
