@@ -300,6 +300,14 @@ nav.elevated { box-shadow: 0 4px 40px rgba(0,0,0,0.4); }
 }
 .mobile-menu-link:hover { background: rgba(255,255,255,0.04); color: var(--white); }
 .mobile-menu-icon { font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
+.mobile-menu-divider {
+  height: 1px; background: var(--border); margin: 8px 24px;
+}
+.mobile-menu-section-label {
+  padding: 16px 24px 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--muted);
+}
 .mobile-menu-footer {
   padding: 16px 20px 24px;
   border-top: 1px solid var(--border);
@@ -1548,21 +1556,83 @@ footer {
     <button class="mobile-menu-close" onclick="toggleMobileMenu()">✕</button>
   </div>
   <div class="mobile-menu-links">
-    <a href="#products" class="mobile-menu-link" onclick="toggleMobileMenu()">
-      <span class="mobile-menu-icon">🛍</span> Shop Parts
+    <!-- Search -->
+    <a href="#" class="mobile-menu-link" onclick="toggleMobileMenu(); setTimeout(toggleSearch, 150);">
+      <span class="mobile-menu-icon">🔍</span> Search Parts
     </a>
+
+    <div class="mobile-menu-divider"></div>
+
+    <!-- Shop -->
+    <div class="mobile-menu-section-label">Shop</div>
+    <a href="#products" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🛍</span> All Products
+    </a>
+    <a href="#categories" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🔥</span> Engine & Induction
+    </a>
+    <a href="#categories" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">💨</span> Exhaust Systems
+    </a>
+    <a href="#categories" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🔩</span> Suspension
+    </a>
+    <a href="#categories" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🛑</span> Brakes
+    </a>
+    <a href="#categories" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🏎</span> Exterior
+    </a>
+    <a href="#categories" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🛞</span> Wheels & Tires
+    </a>
+    <a href="#categories" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">⚡</span> Electronics & Tuning
+    </a>
+
+    <div class="mobile-menu-divider"></div>
+
+    <!-- Explore -->
+    <div class="mobile-menu-section-label">Explore</div>
     <a href="#brands" class="mobile-menu-link" onclick="toggleMobileMenu()">
       <span class="mobile-menu-icon">🏷</span> Brands
     </a>
     <a href="#guides" class="mobile-menu-link" onclick="toggleMobileMenu()">
       <span class="mobile-menu-icon">📖</span> Build Guides
     </a>
+    <a href="https://youtube.com" target="_blank" rel="noopener" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">📹</span> YouTube Channel
+    </a>
     <a href="#reviews" class="mobile-menu-link" onclick="toggleMobileMenu()">
       <span class="mobile-menu-icon">💬</span> Community
     </a>
-    <a href="#" class="mobile-menu-link" onclick="toggleMobileMenu(); toggleSearch();">
-      <span class="mobile-menu-icon">🔍</span> Search
+    <a href="#products" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🆕</span> New Arrivals
     </a>
+
+    <div class="mobile-menu-divider"></div>
+
+    <!-- Help -->
+    <div class="mobile-menu-section-label">Help</div>
+    <a href="#how-it-works" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🎯</span> Fitment Help
+    </a>
+    <a href="#" class="mobile-menu-link" onclick="toggleMobileMenu(); showToast('Order tracking coming soon', '📦');">
+      <span class="mobile-menu-icon">📦</span> Track Your Order
+    </a>
+    <a href="#" class="mobile-menu-link" onclick="toggleMobileMenu(); showToast('Returns portal coming soon', '↩️');">
+      <span class="mobile-menu-icon">↩️</span> Returns
+    </a>
+    <a href="#" class="mobile-menu-link" onclick="toggleMobileMenu(); showToast('Contact form coming soon — email hello@mustangforce.com', '✉️');">
+      <span class="mobile-menu-icon">✉️</span> Contact Us
+    </a>
+    <a href="#hero" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">ℹ️</span> About
+    </a>
+
+    <div class="mobile-menu-divider"></div>
+
+    <!-- Account -->
     <a href="#" class="mobile-menu-link" onclick="toggleMobileMenu(); showToast('Saved items will appear here once you heart products', '♡');">
       <span class="mobile-menu-icon">♡</span> Saved Items
     </a>
