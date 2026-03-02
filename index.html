@@ -1,0 +1,3202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MustangForce — Find the Right Parts for Your Mustang</title>
+<!-- Favicon: MustangForce horse head logo -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='96' fill='%23111'/%3E%3Cg transform='translate(30,20) scale(0.7)'%3E%3Cpath d='M85 10 L75 45 L90 30 Z' fill='%23c0220a'/%3E%3Cpath d='M95 5 L90 50 L105 25 Z' fill='%23d4341a'/%3E%3Cpath d='M108 8 L100 55 L118 30 Z' fill='%23c0220a'/%3E%3Cpath d='M60 30 L55 65 L75 45 Z' fill='%238b1a0e'/%3E%3Cpath d='M70 50 C50 55 40 80 38 100 C36 120 40 145 50 165 C55 175 60 185 55 200 L75 200 C78 190 80 180 85 172 C95 158 110 150 115 135 C120 120 125 100 120 80 C115 60 100 45 85 42 Z' fill='%23e8432a'/%3E%3Cpath d='M85 172 C80 185 78 195 82 210 L105 230 L130 230 L120 200 C115 180 110 165 115 135 C105 155 95 165 85 172 Z' fill='%23c93a1e'/%3E%3Cpath d='M75 120 C80 130 85 145 85 172 C90 160 100 150 110 138 C105 145 95 140 85 130 Z' fill='%238b1a0e'/%3E%3Cpath d='M85 42 C95 38 105 35 110 25 C108 40 112 50 120 55 C115 50 118 40 125 35 C120 50 122 65 120 80 C118 68 112 58 100 52 Z' fill='%238b1a0e'/%3E%3Cellipse cx='78' cy='82' rx='5' ry='6' fill='%231a1a1a'/%3E%3Cellipse cx='79' cy='81' rx='2' ry='2.5' fill='%23c8d41a'/%3E%3Cpath d='M80 18 L72 40 L88 35 Z' fill='%23e8432a'/%3E%3Cpath d='M105 12 L95 38 L108 32 Z' fill='%23d4341a'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════
+   TOKENS
+═══════════════════════════════ */
+:root {
+  --bg:        #111217;
+  --bg2:       #16181F;
+  --bg3:       #1C1F28;
+  --bg4:       #22263200;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.12);
+
+  --red:       #E8253C;
+  --red-soft:  rgba(232,37,60,0.12);
+  --red-glow:  rgba(232,37,60,0.25);
+
+  --amber:     #F5A623;
+  --amber-soft:rgba(245,166,35,0.12);
+  --amber-glow:rgba(245,166,35,0.2);
+
+  --green:     #2DC97E;
+  --green-soft:rgba(45,201,126,0.1);
+
+  --white:     #F4F2EE;
+  --off:       #C8C4BB;
+  --muted:     #7A7870;
+  --dim:       #3E3D3A;
+
+  --f-logo: 'Racing Sans One', system-ui, sans-serif;
+  --f-head: 'Outfit', system-ui, sans-serif;
+  --f-body: 'Inter', system-ui, sans-serif;
+
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ═══════════════════════════════
+   BASE
+═══════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--f-body);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; }
+::selection { background: var(--red); color: #fff; }
+img { display: block; max-width: 100%; }
+
+/* ═══════════════════════════════
+   ANNOUNCEMENT BAR
+═══════════════════════════════ */
+.announce-bar {
+  background: linear-gradient(90deg, var(--red) 0%, #c01a30 100%);
+  padding: 10px 24px;
+  text-align: center;
+  font-family: var(--f-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.announce-pill {
+  background: rgba(255,255,255,0.18);
+  border-radius: 100px;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.announce-bar a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  opacity: 0.85;
+  transition: opacity .2s;
+}
+.announce-bar a:hover { opacity: 1; }
+
+/* ═══════════════════════════════
+   NAV
+═══════════════════════════════ */
+nav {
+  position: sticky; top: 0; z-index: 500;
+  background: rgba(17,18,23,0.96);
+  backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px;
+  transition: box-shadow .3s;
+}
+nav.elevated { box-shadow: 0 4px 40px rgba(0,0,0,0.4); }
+
+.nav-logo {
+  font-family: var(--f-logo);
+  font-size: 24px; font-weight: 400;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+  color: var(--white);
+  transition: transform .3s var(--ease);
+}
+.nav-logo:hover { transform: translateY(-1px); }
+.nav-logo-icon {
+  border-radius: 50%;
+  transition: transform .4s var(--ease), filter .3s;
+  filter: drop-shadow(0 0 6px rgba(232,37,60,0.4));
+}
+.nav-logo:hover .nav-logo-icon {
+  transform: translateX(2px) scale(1.05);
+  filter: drop-shadow(0 0 14px rgba(232,37,60,0.7));
+}
+.nav-logo-text {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+.nav-logo-mustang { 
+  color: var(--white);
+  text-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+.nav-logo-force { 
+  color: var(--red);
+  text-shadow: 0 0 20px rgba(232,37,60,0.4);
+}
+.nav-logo-badge {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--muted);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-left: 8px;
+  margin-bottom: 2px;
+}
+
+/* YMM sticky (shows on scroll) */
+.nav-ymm {
+  flex: 1; max-width: 520px;
+  display: flex; align-items: center;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  opacity: 0; pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
+}
+.nav-ymm.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+.nav-ymm select {
+  flex: 1; background: none; border: none; outline: none;
+  color: var(--white); font-family: var(--f-body);
+  font-size: 13px; padding: 10px 14px;
+  border-right: 1px solid var(--border);
+  cursor: pointer; appearance: none;
+  min-width: 0;
+}
+.nav-ymm select option { background: var(--bg2); }
+.nav-ymm-btn {
+  background: var(--red); color: #fff;
+  padding: 0 18px; height: 44px;
+  font-family: var(--f-head); font-size: 13px; font-weight: 700;
+  white-space: nowrap;
+  transition: background .2s;
+  border-radius: 0 10px 10px 0;
+}
+.nav-ymm-btn:hover { background: #c01a30; }
+
+.nav-links {
+  display: flex; align-items: center; gap: 4px;
+}
+.nav-link {
+  font-size: 14px; font-weight: 500; color: var(--muted);
+  padding: 8px 14px; border-radius: var(--r-sm);
+  transition: color .2s, background .2s;
+}
+.nav-link:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+.nav-link.active { color: var(--white); }
+
+.nav-actions {
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-icon-btn {
+  width: 40px; height: 40px; border-radius: var(--r-sm);
+  background: none; color: var(--muted); font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+  transition: color .2s, background .2s;
+  position: relative;
+}
+.nav-icon-btn:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+.nav-cart-count {
+  position: absolute; top: 5px; right: 5px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--red); color: #fff;
+  font-size: 9px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-btn-primary {
+  background: var(--red); color: #fff;
+  font-family: var(--f-head); font-size: 13px; font-weight: 700;
+  padding: 10px 20px; border-radius: var(--r-sm);
+  transition: background .2s, transform .15s;
+  white-space: nowrap;
+}
+.nav-btn-primary:hover { background: #c01a30; transform: translateY(-1px); }
+
+/* Hamburger — mobile only */
+.nav-hamburger {
+  display: none;
+  flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+  width: 40px; height: 40px; border-radius: var(--r-sm);
+  background: none; color: var(--muted);
+  cursor: pointer; transition: color .2s;
+  order: -1;
+}
+.nav-hamburger:hover { color: var(--white); }
+.nav-hamburger span {
+  display: block; width: 20px; height: 2px;
+  background: currentColor; border-radius: 1px;
+  transition: transform .3s var(--ease), opacity .2s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-desktop-only { /* shown by default, hidden on mobile */ }
+
+/* Mobile slide-out menu */
+.mobile-menu-backdrop {
+  display: none; position: fixed; inset: 0; z-index: 550;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  opacity: 0; transition: opacity .3s var(--ease);
+}
+.mobile-menu-backdrop.open { display: block; opacity: 1; }
+.mobile-menu {
+  display: none; position: fixed; top: 0; left: 0; bottom: 0;
+  width: 280px; max-width: 80vw; z-index: 560;
+  background: var(--bg2); border-right: 1px solid var(--border2);
+  box-shadow: 8px 0 40px rgba(0,0,0,0.5);
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform .3s var(--ease);
+}
+.mobile-menu.open { display: flex; transform: translateX(0); }
+.mobile-menu-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.mobile-menu-title {
+  font-family: var(--f-head); font-size: 16px; font-weight: 700;
+}
+.mobile-menu-close {
+  background: none; color: var(--muted); font-size: 20px;
+  cursor: pointer; transition: color .2s;
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  border-radius: var(--r-sm);
+}
+.mobile-menu-close:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+.mobile-menu-links {
+  flex: 1; padding: 12px 0; overflow-y: auto;
+}
+.mobile-menu-link {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 24px;
+  font-family: var(--f-head); font-size: 15px; font-weight: 600;
+  color: var(--off);
+  transition: background .2s, color .2s;
+}
+.mobile-menu-link:hover { background: rgba(255,255,255,0.04); color: var(--white); }
+.mobile-menu-icon { font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
+.mobile-menu-divider {
+  height: 1px; background: var(--border); margin: 8px 24px;
+}
+.mobile-menu-section-label {
+  padding: 16px 24px 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--muted);
+}
+.mobile-menu-footer {
+  padding: 16px 20px 24px;
+  border-top: 1px solid var(--border);
+}
+.mobile-menu-cta {
+  display: block; text-align: center;
+  background: var(--red); color: #fff;
+  font-family: var(--f-head); font-size: 14px; font-weight: 700;
+  padding: 13px 20px; border-radius: var(--r-md);
+  transition: background .2s;
+}
+.mobile-menu-cta:hover { background: #c01a30; }
+
+/* ═══════════════════════════════
+   HERO
+═══════════════════════════════ */
+.hero {
+  position: relative; overflow: hidden;
+  min-height: 620px;
+  display: flex; flex-direction: column;
+  padding: 64px 48px 0;
+  background: var(--bg2);
+  width: 100%;
+}
+
+/* Animated background per build level */
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  transition: background 0.8s var(--ease);
+}
+.hero-bg.lvl-beginner {
+  background:
+    radial-gradient(ellipse 60% 70% at 75% 20%, rgba(245,166,35,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 50% at 90% 60%, rgba(45,201,126,0.08) 0%, transparent 45%),
+    radial-gradient(ellipse 50% 60% at 20% 80%, rgba(45,201,126,0.05) 0%, transparent 50%);
+}
+.hero-bg.lvl-enthusiast {
+  background:
+    radial-gradient(ellipse 50% 60% at 70% 25%, rgba(232,37,60,0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 50% at 90% 50%, rgba(232,37,60,0.08) 0%, transparent 45%),
+    radial-gradient(ellipse 35% 40% at 85% 75%, rgba(245,166,35,0.06) 0%, transparent 45%),
+    radial-gradient(ellipse 50% 60% at 15% 80%, rgba(245,166,35,0.06) 0%, transparent 50%);
+}
+.hero-bg.lvl-track {
+  background:
+    radial-gradient(ellipse 60% 70% at 65% 15%, rgba(232,37,60,0.18) 0%, transparent 50%),
+    radial-gradient(ellipse 45% 50% at 85% 45%, rgba(232,37,60,0.12) 0%, transparent 45%),
+    radial-gradient(ellipse 35% 40% at 90% 80%, rgba(232,37,60,0.08) 0%, transparent 40%),
+    radial-gradient(ellipse 40% 50% at 10% 90%, rgba(232,37,60,0.08) 0%, transparent 50%);
+}
+
+.hero-dots {
+  position: absolute; inset: 0; z-index: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 100% 100% at 50% 0%, black 0%, transparent 80%);
+}
+.hero-fade-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
+  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+  z-index: 1;
+}
+.hero-brand-mark {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+  pointer-events: none;
+  color: var(--white);
+  opacity: 1;
+  animation: watermark-float 8s ease-in-out infinite;
+}
+@keyframes watermark-float {
+  0%, 100% { transform: translateY(-50%) translateX(0); }
+  50%      { transform: translateY(-52%) translateX(8px); }
+}
+
+.hero-inner {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center;
+  padding-bottom: 80px;
+}
+
+/* Trust badges */
+.hero-trust {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 20px;
+}
+.trust-badge {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 5px 12px;
+  font-size: 12px; font-weight: 500; color: var(--off);
+}
+.trust-badge .icon { font-size: 13px; }
+.trust-divider { width: 4px; height: 4px; border-radius: 50%; background: var(--dim); }
+
+.hero-h {
+  font-family: var(--f-head);
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+  text-shadow: 0 0 40px rgba(255,255,255,0.08);
+}
+.hero-h .line-red { 
+  color: var(--red);
+  text-shadow: 0 0 40px rgba(232,37,60,0.4);
+}
+.hero-h .line-amber { 
+  color: var(--amber);
+  text-shadow: 0 0 40px rgba(245,166,35,0.3);
+}
+.hero-sub {
+  font-size: 17px; font-weight: 400; color: var(--off);
+  line-height: 1.65; max-width: 440px; margin-bottom: 32px;
+}
+/* Dynamic text that changes per level */
+.hero-dynamic { transition: opacity .3s; }
+
+/* Build level selector */
+.level-selector {
+  display: inline-flex; align-items: center;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-xl);
+  padding: 5px;
+  gap: 4px;
+  margin-bottom: 28px;
+}
+.level-btn {
+  padding: 9px 20px; border-radius: 100px;
+  font-family: var(--f-head); font-size: 13px; font-weight: 700;
+  color: var(--muted); background: none;
+  transition: all .3s var(--ease);
+  display: flex; align-items: center; gap: 8px;
+  white-space: nowrap;
+}
+.level-btn .lbadge {
+  font-size: 10px; padding: 1px 6px; border-radius: 4px;
+  background: rgba(255,255,255,0.06); color: var(--muted);
+  transition: background .3s, color .3s;
+}
+.level-btn.active-beginner { background: var(--amber); color: #000; }
+.level-btn.active-beginner .lbadge { background: rgba(0,0,0,0.15); color: rgba(0,0,0,0.6); }
+.level-btn.active-enthusiast { background: var(--red); color: #fff; }
+.level-btn.active-enthusiast .lbadge { background: rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); }
+.level-btn.active-track { background: #fff; color: #000; }
+.level-btn.active-track .lbadge { background: rgba(0,0,0,0.1); color: rgba(0,0,0,0.5); }
+.level-label {
+  font-size: 12px; color: var(--muted); margin-bottom: 8px;
+  font-weight: 500; letter-spacing: 0.3px;
+}
+
+/* Hero CTA cluster */
+.hero-cta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.btn-hero {
+  font-family: var(--f-head); font-size: 15px; font-weight: 700;
+  padding: 14px 28px; border-radius: var(--r-md);
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: all .2s var(--ease);
+}
+.btn-hero.primary { background: var(--red); color: #fff; }
+.btn-hero.primary:hover { background: #c01a30; transform: translateY(-2px); box-shadow: 0 8px 32px var(--red-glow); }
+.btn-hero.ghost {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border2);
+  color: var(--white);
+}
+.btn-hero.ghost:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+.btn-hero .arrow { transition: transform .2s; font-size: 18px; }
+.btn-hero:hover .arrow { transform: translateX(4px); }
+
+/* Hero right: YMM card */
+.hero-ymm-card {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-xl);
+  padding: 32px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+  animation: float-card 6s ease-in-out infinite;
+}
+@keyframes float-card {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+.ymm-card-title {
+  font-family: var(--f-head); font-size: 18px; font-weight: 700;
+  margin-bottom: 6px;
+}
+.ymm-card-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+.ymm-field-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.ymm-field-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 4px;
+}
+.ymm-select-styled {
+  position: relative;
+}
+.ymm-select-styled select {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-md);
+  color: var(--white); font-family: var(--f-body); font-size: 15px;
+  padding: 12px 44px 12px 16px;
+  appearance: none; outline: none; cursor: pointer;
+  transition: border-color .2s;
+}
+.ymm-select-styled select:focus { border-color: var(--red); }
+.ymm-select-styled select:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.ymm-select-styled select { transition: border-color .2s, opacity .3s; }
+.nav-ymm select:disabled { opacity: 0.4; cursor: not-allowed; }
+.ymm-select-styled select option { background: var(--bg2); }
+.ymm-select-styled::after {
+  content: '▾';
+  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  color: var(--muted); pointer-events: none; font-size: 12px;
+}
+.ymm-divider {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 12px; color: var(--dim); margin: 4px 0;
+}
+.ymm-divider::before, .ymm-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.ymm-search-full {
+  width: 100%;
+  background: var(--red); color: #fff;
+  border-radius: var(--r-md);
+  padding: 15px;
+  font-family: var(--f-head); font-size: 15px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  transition: background .2s, transform .15s;
+  margin-bottom: 16px;
+}
+.ymm-search-full:hover { background: #c01a30; transform: translateY(-1px); }
+.ymm-popular {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.ymm-pop-label { font-size: 11px; color: var(--muted); width: 100%; margin-bottom: 2px; font-weight: 500; }
+.ymm-chip {
+  font-size: 12px; font-weight: 500;
+  padding: 6px 12px; border-radius: 100px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  color: var(--off); cursor: pointer;
+  transition: all .2s;
+}
+.ymm-chip:hover { border-color: var(--red); color: var(--white); background: var(--red-soft); }
+
+/* Hero right side enhancements */
+.hero-right {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.hero-right-glow {
+  position: absolute;
+  width: 400px; height: 400px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(232,37,60,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+.hero-right-ring {
+  position: absolute;
+  width: 480px; height: 480px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(232,37,60,0.08);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: ring-spin 30s linear infinite;
+}
+.hero-right-ring::before {
+  content: '';
+  position: absolute; top: -3px; left: 50%;
+  width: 6px; height: 6px;
+  background: var(--red); border-radius: 50%;
+  box-shadow: 0 0 12px var(--red-glow);
+}
+@keyframes ring-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.hero-right-stats {
+  display: flex; gap: 10px; z-index: 2; flex-wrap: wrap; justify-content: center;
+}
+.hero-stat-pill {
+  padding: 8px 16px; border-radius: 100px;
+  background: rgba(22,24,31,0.7); backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  font-size: 12px; color: var(--muted); font-weight: 600;
+  white-space: nowrap;
+}
+.hero-stat-num { color: var(--white); font-family: var(--f-head); font-weight: 800; }
+
+/* Fitment pills below hero */
+.hero-fitments {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; gap: 12px;
+  padding: 20px 0 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.hero-fitments::-webkit-scrollbar { display: none; }
+.fit-label {
+  font-size: 12px; font-weight: 600; color: var(--muted);
+  white-space: nowrap; flex-shrink: 0;
+}
+.fit-chip {
+  display: flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 100px;
+  background: var(--bg3); border: 1px solid var(--border);
+  font-size: 13px; font-weight: 500; color: var(--off);
+  white-space: nowrap; flex-shrink: 0;
+  cursor: pointer; transition: all .2s;
+}
+.fit-chip:hover { border-color: var(--red); color: var(--white); }
+.fit-chip .gen { font-size: 10px; opacity: 0.6; margin-left: 2px; }
+
+/* ═══════════════════════════════
+   TRUST STRIP
+═══════════════════════════════ */
+.trust-strip {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 48px;
+  display: flex; align-items: center; justify-content: space-around;
+  flex-wrap: wrap; gap: 24px;
+}
+.ts-item {
+  display: flex; align-items: center; gap: 12px;
+}
+.ts-icon {
+  width: 40px; height: 40px; border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.ts-icon.amber { background: var(--amber-soft); }
+.ts-icon.green { background: var(--green-soft); }
+.ts-icon.red { background: var(--red-soft); }
+.ts-icon.blue { background: rgba(59,130,246,0.1); }
+.ts-text strong { display: block; font-size: 14px; font-weight: 600; color: var(--white); }
+.ts-text span { font-size: 12px; color: var(--muted); }
+
+/* ═══════════════════════════════
+   SECTIONS COMMON
+═══════════════════════════════ */
+.sec {
+  padding: 80px 48px;
+}
+.sec-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--red);
+  margin-bottom: 12px;
+}
+.sec-label::before {
+  content: ''; width: 18px; height: 2px; background: var(--red); border-radius: 1px;
+}
+.sec-h {
+  font-family: var(--f-head); font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700; letter-spacing: -0.5px; line-height: 1.1;
+  margin-bottom: 8px;
+}
+.sec-sub {
+  font-size: 16px; color: var(--muted); line-height: 1.6; margin-bottom: 48px;
+}
+.sec-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 40px; flex-wrap: wrap; gap: 16px;
+}
+.sec-header-actions {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+}
+.link-arrow {
+  font-family: var(--f-head); font-size: 14px; font-weight: 700;
+  color: var(--red); display: inline-flex; align-items: center; gap: 6px;
+  transition: gap .2s;
+}
+.link-arrow:hover { gap: 10px; }
+.link-arrow::after { content: '→'; font-size: 16px; }
+
+/* Reveal */
+.rv { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.rv.in { opacity: 1; transform: translateY(0); }
+.rv.d1 { transition-delay: .08s; } .rv.d2 { transition-delay: .16s; }
+.rv.d3 { transition-delay: .24s; } .rv.d4 { transition-delay: .32s; }
+.rv.d5 { transition-delay: .40s; }
+
+/* ═══════════════════════════════
+   CATEGORIES
+═══════════════════════════════ */
+.cats-section { background: var(--bg2); border-top: 1px solid var(--border); }
+.cats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.cat-tile {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 24px 20px;
+  cursor: pointer; position: relative; overflow: hidden;
+  transition: border-color .25s, transform .25s var(--ease), box-shadow .25s;
+  display: flex; flex-direction: column; gap: 12px;
+  text-decoration: none; color: inherit;
+}
+.cat-tile::before {
+  content: '';
+  position: absolute; inset: 0; border-radius: var(--r-lg);
+  opacity: 0; transition: opacity .3s;
+}
+.cat-tile:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.3); }
+.cat-tile:hover::before { opacity: 1; }
+
+/* per-tile accent colors */
+.ct-engine::before   { background: radial-gradient(ellipse at 0% 0%, rgba(232,37,60,0.08), transparent 60%); }
+.ct-exhaust::before  { background: radial-gradient(ellipse at 0% 0%, rgba(120,120,120,0.08), transparent 60%); }
+.ct-suspend::before  { background: radial-gradient(ellipse at 0% 0%, rgba(59,130,246,0.08), transparent 60%); }
+.ct-wheels::before   { background: radial-gradient(ellipse at 0% 0%, rgba(245,166,35,0.08), transparent 60%); }
+.ct-brakes::before   { background: radial-gradient(ellipse at 0% 0%, rgba(232,37,60,0.1), transparent 60%); }
+.ct-exterior::before { background: radial-gradient(ellipse at 0% 0%, rgba(45,201,126,0.07), transparent 60%); }
+.ct-interior::before { background: radial-gradient(ellipse at 0% 0%, rgba(168,85,247,0.07), transparent 60%); }
+.ct-elec::before     { background: radial-gradient(ellipse at 0% 0%, rgba(6,182,212,0.07), transparent 60%); }
+
+.cat-tile-icon {
+  width: 48px; height: 48px; border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+}
+.cat-tile-name { font-family: var(--f-head); font-size: 16px; font-weight: 700; line-height: 1.2; }
+.cat-tile-count { font-size: 12px; color: var(--muted); }
+.cat-tile-arrow {
+  margin-top: auto; font-size: 18px; color: var(--dim);
+  transform: translateX(-4px); transition: transform .25s, color .25s;
+}
+.cat-tile:hover .cat-tile-arrow { transform: translateX(0); color: var(--red); }
+
+/* ═══════════════════════════════
+   HOW IT WORKS
+═══════════════════════════════ */
+.how-section { background: var(--bg); }
+.how-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  border: 1px solid var(--border); border-radius: var(--r-xl);
+  overflow: hidden;
+}
+.how-step {
+  padding: 36px 32px;
+  background: var(--bg2);
+  position: relative;
+  transition: background .3s;
+}
+.how-step:hover { background: var(--bg3); }
+.how-step-num {
+  font-family: var(--f-head); font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; color: var(--red);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.how-step-num::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.how-icon {
+  font-size: 36px; margin-bottom: 16px; display: block;
+}
+.how-step-title {
+  font-family: var(--f-head); font-size: 20px; font-weight: 700;
+  margin-bottom: 10px; line-height: 1.2;
+}
+.how-step-body { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* ═══════════════════════════════
+   PRODUCTS
+═══════════════════════════════ */
+.products-section { background: var(--bg2); border-top: 1px solid var(--border); }
+.filter-row {
+  display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
+}
+.filter-pill {
+  padding: 8px 18px; border-radius: 100px;
+  font-family: var(--f-head); font-size: 13px; font-weight: 600;
+  border: 1px solid var(--border2);
+  color: var(--muted); background: none;
+  transition: all .2s var(--ease); cursor: pointer;
+}
+.filter-pill.on { background: var(--red); color: #fff; border-color: var(--red); }
+.filter-pill:hover:not(.on) { color: var(--white); border-color: var(--border2); background: rgba(255,255,255,0.05); }
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.prod-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: border-color .25s, transform .3s var(--ease), box-shadow .3s;
+  cursor: pointer;
+}
+.prod-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.prod-img-wrap {
+  position: relative; background: var(--bg2);
+  aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.prod-emoji { font-size: 72px; opacity: 0.18; transition: transform .4s var(--ease), opacity .4s; }
+.prod-card:hover .prod-emoji { transform: scale(1.1); opacity: 0.28; }
+.prod-tag {
+  position: absolute; top: 12px; left: 12px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+  padding: 4px 10px; border-radius: 6px;
+}
+.tag-bestseller { background: var(--red); color: #fff; }
+.tag-new { background: var(--amber); color: #000; }
+.tag-toprated { background: var(--green); color: #000; }
+.tag-sale { background: rgba(255,255,255,0.12); color: var(--white); backdrop-filter: blur(8px); }
+.prod-heart {
+  position: absolute; top: 12px; right: 12px;
+  width: 34px; height: 34px; border-radius: var(--r-sm);
+  background: rgba(22,24,31,0.8); backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 15px;
+  opacity: 0; transform: translateY(-4px);
+  transition: opacity .2s, transform .2s, color .2s;
+}
+.prod-card:hover .prod-heart { opacity: 1; transform: translateY(0); }
+.prod-heart.loved { color: var(--red); opacity: 1; transform: translateY(0); }
+
+.prod-body { padding: 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.prod-brand {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--red);
+}
+.prod-name {
+  font-family: var(--f-head); font-size: 15px; font-weight: 700;
+  color: var(--white); line-height: 1.3;
+}
+.prod-fit {
+  font-size: 12px; color: var(--muted);
+  display: flex; align-items: center; gap: 4px;
+}
+.prod-fit-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+.prod-stars {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 13px;
+}
+.stars-gold { color: var(--amber); }
+.stars-count { font-size: 12px; color: var(--muted); }
+.prod-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px 18px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+.prod-price-wrap { display: flex; align-items: baseline; gap: 8px; }
+.prod-price {
+  font-family: var(--f-head); font-size: 22px; font-weight: 800;
+  color: var(--white);
+}
+.prod-price-was { font-size: 13px; color: var(--dim); text-decoration: line-through; }
+.prod-add-btn {
+  background: var(--red); color: #fff;
+  font-family: var(--f-head); font-size: 13px; font-weight: 700;
+  padding: 9px 18px; border-radius: var(--r-sm);
+  transition: background .2s, transform .15s;
+}
+.prod-add-btn:hover { background: #c01a30; transform: scale(1.04); }
+
+/* ═══════════════════════════════
+   BUILD GUIDE BANNER
+═══════════════════════════════ */
+.guide-banner {
+  margin: 0 48px;
+  background: linear-gradient(135deg, var(--bg3) 0%, #1e2030 100%);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-xl);
+  padding: 48px 56px;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 40px; align-items: center;
+  position: relative; overflow: hidden;
+}
+.guide-banner::before {
+  content: '🏎';
+  position: absolute; right: 200px; top: 50%; transform: translateY(-50%);
+  font-size: 140px; opacity: 0.06;
+}
+.guide-banner-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--amber); display: flex; align-items: center; gap: 6px;
+  margin-bottom: 10px;
+}
+.guide-banner-h {
+  font-family: var(--f-head); font-size: 28px; font-weight: 800;
+  margin-bottom: 10px; line-height: 1.2;
+}
+.guide-banner-sub { font-size: 15px; color: var(--muted); max-width: 440px; line-height: 1.6; }
+.guide-btns { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; min-width: 180px; }
+.btn-amber {
+  background: var(--amber); color: #000;
+  font-family: var(--f-head); font-size: 14px; font-weight: 700;
+  padding: 13px 26px; border-radius: var(--r-md);
+  display: flex; align-items: center; gap: 8px;
+  transition: all .2s; white-space: nowrap;
+}
+.btn-amber:hover { background: #e8960e; transform: translateY(-2px); box-shadow: 0 8px 28px var(--amber-glow); }
+.btn-link {
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  display: flex; align-items: center; gap: 4px;
+  transition: color .2s;
+}
+.btn-link:hover { color: var(--white); }
+
+/* ═══════════════════════════════
+   BRANDS
+═══════════════════════════════ */
+.brands-section { background: var(--bg); padding: 64px 48px; }
+.brands-scroll {
+  display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+}
+.brand-pill {
+  padding: 10px 22px; border-radius: 100px;
+  background: var(--bg3); border: 1px solid var(--border);
+  font-family: var(--f-head); font-size: 13px; font-weight: 700;
+  color: var(--muted); cursor: pointer;
+  transition: all .2s;
+}
+.brand-pill:hover { border-color: var(--border2); color: var(--white); background: var(--bg2); }
+
+/* ═══════════════════════════════
+   DUAL AUDIENCE SPLIT
+═══════════════════════════════ */
+.split-section {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; border-top: 1px solid var(--border);
+}
+.split-pane {
+  padding: 80px 48px;
+  display: flex; flex-direction: column;
+}
+.split-pane.consumer { background: var(--bg2); border-right: 1px solid var(--border); }
+.split-pane.mfr { background: var(--bg); }
+
+.split-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: var(--r-sm); margin-bottom: 20px;
+  width: fit-content;
+}
+.split-tag.consumer-tag { background: var(--green-soft); color: var(--green); }
+.split-tag.mfr-tag { background: var(--red-soft); color: var(--red); }
+.split-h { font-family: var(--f-head); font-size: clamp(28px, 3vw, 40px); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; line-height: 1.1; }
+.split-body { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; }
+
+.feature-tiles { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.ftile {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 16px 20px;
+  transition: border-color .2s;
+}
+.ftile:hover { border-color: var(--border2); }
+.ftile-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.ftile-text strong { display: block; font-family: var(--f-head); font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+.ftile-text span { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+/* Margin bars in mfr pane */
+.margin-rows { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+.mrow-label { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.mrow-name { font-size: 13px; color: var(--off); }
+.mrow-val { font-family: var(--f-head); font-size: 13px; font-weight: 700; color: var(--white); }
+.mrow-track { height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+.mrow-fill { height: 100%; width: 0; border-radius: 3px; transition: width 1.2s var(--ease); }
+.fill-red   { background: linear-gradient(90deg, var(--red), #ff4d6a); }
+.fill-amber { background: linear-gradient(90deg, var(--amber), #ffc84d); }
+.fill-dim   { background: var(--dim); }
+
+.mfr-step-list { display: flex; flex-direction: column; gap: 0; margin-bottom: 40px; }
+.mfr-step-row {
+  display: flex; gap: 16px; padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+.mfr-step-row:last-child { border-bottom: none; }
+.mfr-step-circle {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: var(--red-soft); border: 1px solid rgba(232,37,60,0.3);
+  color: var(--red); font-family: var(--f-head); font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 2px;
+}
+.mfr-step-body strong { font-family: var(--f-head); font-size: 15px; font-weight: 700; display: block; margin-bottom: 2px; }
+.mfr-step-body p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+/* ═══════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════ */
+.reviews-section { background: var(--bg2); border-top: 1px solid var(--border); }
+.reviews-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+}
+.review-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  transition: border-color .25s, transform .25s var(--ease);
+}
+.review-card:hover { border-color: var(--border2); transform: translateY(-4px); }
+.review-stars { font-size: 14px; color: var(--amber); letter-spacing: 1px; margin-bottom: 14px; }
+.review-text { font-size: 14px; line-height: 1.7; color: var(--off); margin-bottom: 20px; font-style: italic; }
+.review-author { display: flex; align-items: center; gap: 12px; }
+.review-av {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--bg2); border: 1px solid var(--border2);
+  font-family: var(--f-head); font-size: 16px; font-weight: 700; color: var(--red);
+  display: flex; align-items: center; justify-content: center;
+}
+.review-name { font-family: var(--f-head); font-size: 14px; font-weight: 700; display: block; }
+.review-role { font-size: 12px; color: var(--muted); }
+
+/* ═══════════════════════════════
+   FINAL CTA
+═══════════════════════════════ */
+.final-cta {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 100px 48px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 70% at 50% 100%, var(--red-glow), transparent 70%);
+  opacity: 0.5;
+}
+.final-h {
+  font-family: var(--f-head); font-size: clamp(40px, 6vw, 80px);
+  font-weight: 800; letter-spacing: -2px; line-height: 1.05;
+  position: relative; z-index: 1; margin-bottom: 16px;
+}
+.final-h span { color: var(--red); }
+.final-sub { font-size: 17px; color: var(--muted); max-width: 420px; margin: 0 auto 40px; line-height: 1.6; position: relative; z-index: 1; }
+.final-btns { display: flex; justify-content: center; gap: 12px; position: relative; z-index: 1; }
+.btn-white {
+  background: var(--white); color: var(--bg);
+  font-family: var(--f-head); font-size: 15px; font-weight: 700;
+  padding: 15px 32px; border-radius: var(--r-md);
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: all .2s;
+}
+.btn-white:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(255,255,255,0.15); }
+.btn-outline-white {
+  background: transparent; color: var(--off);
+  border: 1px solid var(--border2);
+  font-family: var(--f-head); font-size: 15px; font-weight: 700;
+  padding: 15px 32px; border-radius: var(--r-md);
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: all .2s;
+}
+.btn-outline-white:hover { color: var(--white); border-color: var(--white); transform: translateY(-2px); }
+
+/* ═══════════════════════════════
+   FOOTER
+═══════════════════════════════ */
+footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 64px 48px 32px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+}
+.footer-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.footer-logo-icon {
+  border-radius: 50%;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(232,37,60,0.3));
+}
+.footer-logo {
+  font-family: var(--f-logo); font-size: 26px; font-weight: 400;
+  letter-spacing: 0.5px;
+}
+.footer-logo span { 
+  color: var(--red);
+  text-shadow: 0 0 16px rgba(232,37,60,0.3);
+}
+.footer-desc { font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 260px; margin-bottom: 24px; }
+.footer-socials { display: flex; gap: 8px; }
+.fsoc {
+  width: 36px; height: 36px; border-radius: var(--r-sm);
+  background: var(--bg3); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; color: var(--muted);
+  font-family: var(--f-head);
+  transition: all .2s;
+}
+.fsoc:hover { background: var(--red); border-color: var(--red); color: #fff; }
+.footer-col h5 {
+  font-family: var(--f-head); font-size: 13px; font-weight: 700;
+  margin-bottom: 16px; color: var(--white);
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul a { font-size: 14px; color: var(--muted); transition: color .2s; }
+.footer-col ul a:hover { color: var(--white); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-legal { font-size: 12px; color: var(--dim); line-height: 1.6; max-width: 500px; }
+.footer-legal-links { display: flex; gap: 20px; }
+.footer-legal-links a { font-size: 12px; color: var(--dim); transition: color .2s; }
+.footer-legal-links a:hover { color: var(--muted); }
+
+/* ═══════════════════════════════
+   MOBILE
+═══════════════════════════════ */
+@media (max-width: 1100px) {
+  .cats-grid { grid-template-columns: repeat(2, 1fr); }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-ymm-card { max-width: 100%; }
+  .hero-right { align-items: stretch; }
+  .hero-right-glow, .hero-right-ring { display: none; }
+  .hero-brand-mark { display: none; }
+  .hero-right-stats { justify-content: flex-start; }
+  .split-section { grid-template-columns: 1fr; }
+  .split-pane.consumer { border-right: none; border-bottom: 1px solid var(--border); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  /* Announce bar */
+  .announce-bar { padding: 8px 16px; font-size: 12px; gap: 8px; flex-wrap: wrap; }
+  .announce-pill { font-size: 10px; padding: 2px 8px; }
+
+  /* Nav — hamburger left, logo center, cart right */
+  nav { padding: 0 12px; height: 56px; }
+  .nav-links { display: none; }
+  .nav-ymm { display: none; }
+  .nav-btn-primary { display: none; }
+  .nav-desktop-only { display: none; }
+  .nav-logo-badge { display: none; }
+  .nav-logo { font-size: 20px; gap: 8px; flex: 1; justify-content: center; }
+  .nav-hamburger { display: flex; }
+  .nav-icon-btn { width: 40px; height: 40px; font-size: 18px; }
+
+  /* Cart preview — account for shorter mobile nav */
+  .cart-preview { top: 56px; max-height: calc(100vh - 56px); }
+
+  /* Hero */
+  .hero { padding: 32px 20px 0; min-height: auto; }
+  .hero-inner { gap: 32px; }
+  .hero-brand-mark { display: none; }
+  .hero-h { font-size: clamp(28px, 8vw, 44px); }
+  .hero-sub { max-width: 100%; font-size: 15px; }
+  .hero-trust { flex-wrap: wrap; gap: 6px; }
+  .trust-badge { font-size: 11px; padding: 4px 10px; }
+  .trust-divider { display: none; }
+  .hero-right-stats { gap: 6px; flex-wrap: wrap; }
+  .hero-stat-pill { padding: 6px 12px; font-size: 11px; }
+  .hero-ymm-card { padding: 24px 20px; }
+  .ymm-card-title { font-size: 16px; }
+
+  /* Level selector — horizontal scroll instead of stacking */
+  .level-selector {
+    display: flex; flex-wrap: nowrap;
+    overflow-x: auto; scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--r-lg);
+    width: 100%;
+  }
+  .level-selector::-webkit-scrollbar { display: none; }
+  .level-btn { font-size: 12px; padding: 9px 14px; flex-shrink: 0; }
+  .lbadge { display: none; }
+
+  /* Hero CTA */
+  .hero-cta { gap: 8px; flex-direction: column; align-items: stretch; }
+  .btn-hero { font-size: 14px; padding: 13px 20px; justify-content: center; text-align: center; }
+  .hero-fitments { padding: 16px 0 0; gap: 8px; }
+  .fit-chip { font-size: 12px; padding: 6px 10px; }
+
+  /* Sections */
+  .sec, .brands-section, .final-cta, footer { padding-left: 20px; padding-right: 20px; }
+  .sec { padding-top: 56px; padding-bottom: 56px; }
+
+  /* Trust strip */
+  .trust-strip { padding: 20px; flex-direction: column; gap: 14px; align-items: stretch; }
+  .ts-item { gap: 10px; }
+  .ts-icon { width: 36px; height: 36px; font-size: 18px; }
+  .ts-text strong { font-size: 13px; }
+  .ts-text span { font-size: 11px; }
+
+  /* How it works */
+  .how-grid { grid-template-columns: 1fr; }
+  .how-step { padding: 28px 24px; }
+
+  /* Categories */
+  .cats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cat-tile { padding: 18px 14px; }
+  .cat-tile-name { font-size: 14px; }
+  .cat-tile-count { font-size: 11px; }
+
+  /* Products */
+  .products-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .prod-card { max-width: 100%; }
+  .prod-emoji { font-size: 40px; }
+  .prod-body { padding: 12px; gap: 4px; }
+  .prod-name { font-size: 13px; }
+  .prod-brand { font-size: 10px; }
+  .prod-fit { font-size: 11px; }
+  .prod-stars { font-size: 12px; }
+  .prod-footer { padding: 10px 12px 14px; }
+  .prod-price { font-size: 18px; }
+  .prod-add-btn { font-size: 11px; padding: 7px 12px; }
+  .filter-row { gap: 4px; }
+  .filter-pill { padding: 6px 12px; font-size: 12px; }
+  .sec-header { flex-direction: column; align-items: stretch; gap: 12px; }
+  .sec-header-actions { align-items: flex-start; }
+
+  /* Guide banner — flush to section edges */
+  .guide-banner { margin: 0; padding: 28px 20px; grid-template-columns: 1fr; gap: 20px; border-radius: var(--r-lg); }
+  .guide-banner::before { display: none; }
+  .guide-banner-h { font-size: 22px; }
+  .guide-btns { align-items: stretch; }
+  .btn-amber { justify-content: center; font-size: 13px; padding: 12px 20px; }
+
+  /* Brands */
+  .brands-section { padding: 48px 20px; }
+  .brands-scroll { gap: 6px; }
+  .brand-pill { padding: 8px 14px; font-size: 12px; }
+
+  /* Split panes */
+  .split-section { grid-template-columns: 1fr; }
+  .split-pane { padding: 48px 20px; }
+  .split-pane.consumer { border-right: none; border-bottom: 1px solid var(--border); }
+  .split-h { font-size: clamp(24px, 6vw, 36px); }
+  .ftile { padding: 14px 16px; }
+  .ftile-text strong { font-size: 13px; }
+  .ftile-text span { font-size: 12px; }
+  .mfr-step-body p { font-size: 13px; }
+
+  /* Reviews */
+  .reviews-grid { grid-template-columns: 1fr; gap: 12px; }
+  .review-card { padding: 22px 18px; }
+  .review-text { font-size: 13px; }
+
+  /* Final CTA */
+  .final-cta { padding: 64px 20px; }
+  .final-h { font-size: clamp(32px, 10vw, 60px); letter-spacing: -1px; }
+  .final-sub { font-size: 15px; max-width: 100%; }
+  .final-btns { flex-direction: column; align-items: stretch; }
+  .btn-white, .btn-outline-white { justify-content: center; text-align: center; }
+
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  footer { padding: 48px 20px 24px; }
+  .footer-desc { max-width: 100%; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .footer-legal { max-width: 100%; }
+
+  /* Overlays */
+  .search-overlay { top: 56px; padding: 16px 20px 24px; }
+  .hero-stats-row { display: none; }
+}
+
+@media (max-width: 420px) {
+  .cats-grid { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .hero-right-stats { flex-direction: column; align-items: stretch; }
+  .hero-stat-pill { text-align: center; }
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .filter-row { flex-wrap: wrap; }
+}
+
+/* ═══════════════════════════════
+   TOAST NOTIFICATIONS
+═══════════════════════════════ */
+.toast-container {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  display: flex; flex-direction: column; gap: 8px;
+  pointer-events: none;
+}
+.toast {
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--r-md); padding: 14px 20px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 14px; color: var(--white);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  pointer-events: all;
+  transform: translateX(120%); opacity: 0;
+  animation: toast-in .4s var(--ease) forwards;
+  max-width: 360px;
+}
+.toast.toast-out {
+  animation: toast-out .3s var(--ease) forwards;
+}
+.toast-icon { font-size: 20px; flex-shrink: 0; }
+.toast-msg { line-height: 1.4; }
+.toast-close {
+  margin-left: auto; background: none; color: var(--muted);
+  font-size: 18px; padding: 0 0 0 8px; cursor: pointer;
+  transition: color .2s;
+}
+.toast-close:hover { color: var(--white); }
+@keyframes toast-in {
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes toast-out {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(120%); opacity: 0; }
+}
+
+/* Cart toast special styling */
+.toast-cart { border-left: 3px solid var(--green); }
+.toast-success { border-left: 3px solid var(--green); }
+.toast-info { border-left: 3px solid var(--amber); }
+
+/* ═══════════════════════════════
+   SEARCH OVERLAY
+═══════════════════════════════ */
+.search-overlay {
+  position: fixed; top: 68px; left: 0; right: 0; z-index: 600;
+  background: rgba(17,18,23,0.98);
+  backdrop-filter: blur(20px);
+  padding: 24px 48px 32px;
+  border-bottom: 1px solid var(--border2);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  transform: translateY(-20px); opacity: 0;
+  pointer-events: none;
+  transition: transform .3s var(--ease), opacity .3s var(--ease);
+}
+.search-overlay.open {
+  transform: translateY(0); opacity: 1;
+  pointer-events: all;
+}
+.search-input-wrap {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--r-md); padding: 4px 4px 4px 20px;
+  max-width: 680px; margin: 0 auto;
+}
+.search-input-wrap:focus-within { border-color: var(--red); }
+.search-input {
+  flex: 1; background: none; border: none; outline: none;
+  color: var(--white); font-family: var(--f-body); font-size: 16px;
+  padding: 12px 0;
+}
+.search-input::placeholder { color: var(--muted); }
+.search-close-btn {
+  background: var(--bg2); color: var(--muted); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 8px 14px;
+  font-family: var(--f-head); font-size: 12px; font-weight: 700;
+  cursor: pointer; transition: all .2s;
+}
+.search-close-btn:hover { color: var(--white); border-color: var(--border2); }
+.search-suggestions {
+  max-width: 680px; margin: 16px auto 0;
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.search-sug-label { width: 100%; font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.search-sug-chip {
+  padding: 8px 16px; border-radius: 100px;
+  background: var(--bg2); border: 1px solid var(--border);
+  font-size: 13px; color: var(--off); cursor: pointer;
+  transition: all .2s;
+}
+.search-sug-chip:hover { border-color: var(--red); color: var(--white); background: var(--red-soft); }
+
+/* ═══════════════════════════════
+   CART PREVIEW
+═══════════════════════════════ */
+.cart-preview {
+  position: fixed; top: 68px; right: 0; z-index: 600;
+  width: 380px; max-height: calc(100vh - 88px);
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: 0 0 0 var(--r-lg);
+  box-shadow: -8px 20px 60px rgba(0,0,0,0.5);
+  padding: 24px;
+  transform: translateX(100%); opacity: 0;
+  pointer-events: none;
+  transition: transform .3s var(--ease), opacity .3s var(--ease);
+  overflow-y: auto;
+}
+.cart-preview.open {
+  transform: translateX(0); opacity: 1;
+  pointer-events: all;
+}
+.cart-preview-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+}
+.cart-preview-title { font-family: var(--f-head); font-size: 18px; font-weight: 700; }
+.cart-preview-close {
+  background: none; color: var(--muted); font-size: 20px;
+  cursor: pointer; transition: color .2s;
+}
+.cart-preview-close:hover { color: var(--white); }
+.cart-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.cart-item-emoji { font-size: 28px; width: 48px; height: 48px; background: var(--bg2); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; }
+.cart-item-info { flex: 1; }
+.cart-item-name { font-family: var(--f-head); font-size: 13px; font-weight: 700; }
+.cart-item-price { font-size: 13px; color: var(--muted); }
+.cart-item-remove { background: none; color: var(--dim); font-size: 16px; cursor: pointer; transition: color .2s; }
+.cart-item-remove:hover { color: var(--red); }
+.cart-total {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 0 0; margin-top: 8px;
+}
+.cart-total-label { font-size: 14px; color: var(--muted); }
+.cart-total-val { font-family: var(--f-head); font-size: 22px; font-weight: 800; }
+.cart-checkout-btn {
+  width: 100%; margin-top: 16px;
+  background: var(--red); color: #fff;
+  font-family: var(--f-head); font-size: 15px; font-weight: 700;
+  padding: 14px; border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background .2s, transform .15s;
+}
+.cart-checkout-btn:hover { background: #c01a30; transform: translateY(-1px); }
+.cart-empty { text-align: center; padding: 40px 0; color: var(--muted); font-size: 14px; }
+.cart-empty-icon { font-size: 40px; margin-bottom: 12px; display: block; opacity: 0.4; }
+
+@media (max-width: 768px) {
+  .cart-preview { width: 100%; border-radius: 0; }
+  .toast-container { left: 16px; right: 16px; bottom: 16px; }
+  .toast { max-width: 100%; }
+  .search-overlay { padding: 20px 24px 28px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ═══ ANNOUNCE BAR ═══ -->
+<div class="announce-bar">
+  <span>30-day commission-free for new manufacturers — <a href="#for-manufacturers">Apply now</a></span>
+</div>
+
+<!-- ═══ NAV ═══ -->
+<nav id="mainNav">
+  <!-- Hamburger — visible on mobile only, top-left -->
+  <button class="nav-hamburger" title="Menu" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </button>
+
+  <a href="#hero" class="nav-logo">
+    <svg class="nav-logo-icon" width="36" height="36" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="96" fill="#111"/>
+      <g transform="translate(30,20) scale(0.7)">
+        <!-- Mane spikes -->
+        <path d="M85 10 L75 45 L90 30 Z" fill="#c0220a"/>
+        <path d="M95 5 L90 50 L105 25 Z" fill="#d4341a"/>
+        <path d="M108 8 L100 55 L118 30 Z" fill="#c0220a"/>
+        <path d="M60 30 L55 65 L75 45 Z" fill="#8b1a0e"/>
+        <!-- Head main shape -->
+        <path d="M70 50 C50 55, 40 80, 38 100 C36 120, 40 145, 50 165 C55 175, 60 185, 55 200 L75 200 C78 190, 80 180, 85 172 C95 158, 110 150, 115 135 C120 120, 125 100, 120 80 C115 60, 100 45, 85 42 Z" fill="#e8432a"/>
+        <!-- Neck/chest -->
+        <path d="M85 172 C80 185, 78 195, 82 210 L105 230 L130 230 L120 200 C115 180, 110 165, 115 135 C105 155, 95 165, 85 172 Z" fill="#c93a1e"/>
+        <!-- Shadow/depth on neck -->
+        <path d="M75 120 C80 130, 85 145, 85 172 C90 160, 100 150, 110 138 C105 145, 95 140, 85 130 Z" fill="#8b1a0e"/>
+        <!-- Mane flowing -->
+        <path d="M85 42 C95 38, 105 35, 110 25 C108 40, 112 50, 120 55 C115 50, 118 40, 125 35 C120 50, 122 65, 120 80 C118 68, 112 58, 100 52 Z" fill="#8b1a0e"/>
+        <!-- Jaw line -->
+        <path d="M38 100 C35 110, 32 125, 38 140 C42 148, 48 155, 50 165 C45 155, 40 140, 42 125 Z" fill="#c93a1e"/>
+        <!-- Nostril -->
+        <ellipse cx="48" cy="158" rx="4" ry="5" fill="#6b1008"/>
+        <!-- Eye -->
+        <ellipse cx="78" cy="82" rx="5" ry="6" fill="#1a1a1a"/>
+        <ellipse cx="79" cy="81" rx="2" ry="2.5" fill="#c8d41a"/>
+        <!-- Ear tips -->
+        <path d="M80 18 L72 40 L88 35 Z" fill="#e8432a"/>
+        <path d="M105 12 L95 38 L108 32 Z" fill="#d4341a"/>
+      </g>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="nav-logo-mustang">MUSTANG</span><span class="nav-logo-force">FORCE</span>
+    </div>
+    <span class="nav-logo-badge">Beta</span>
+  </a>
+
+  <!-- Sticky YMM (appears on scroll) -->
+  <div class="nav-ymm" id="navYMM">
+    <select id="navYear" title="Year" onchange="syncYMM('nav')">
+      <option value="">Year</option>
+    </select>
+    <select id="navModel" title="Model" disabled>
+      <option value="">Model</option>
+    </select>
+    <select id="navCat" title="Category">
+      <option value="">Category</option>
+      <option value="engine">Engine</option>
+      <option value="exhaust">Exhaust</option>
+      <option value="suspension">Suspension</option>
+      <option value="brakes">Brakes</option>
+      <option value="exterior">Exterior</option>
+      <option value="wheels">Wheels</option>
+      <option value="electronics">Electronics</option>
+    </select>
+    <button class="nav-ymm-btn" onclick="handleSearch('nav')">Find Parts</button>
+  </div>
+
+  <div class="nav-links">
+    <a href="#products" class="nav-link active">Shop</a>
+    <a href="#brands" class="nav-link">Brands</a>
+    <a href="#guides" class="nav-link">Build Guides</a>
+    <a href="#reviews" class="nav-link">Community</a>
+  </div>
+
+  <div class="nav-actions">
+    <button class="nav-icon-btn nav-desktop-only" title="Search" onclick="toggleSearch()">🔍</button>
+    <button class="nav-icon-btn nav-desktop-only" title="Saved" onclick="showToast('Saved items will appear here once you heart products', '♡')">♡</button>
+    <button class="nav-icon-btn" id="cartBtn" title="Cart" style="position:relative" onclick="showCartPreview()">
+      🛒 <span class="nav-cart-count" id="cartCount">0</span>
+    </button>
+    <a href="#for-manufacturers" class="nav-btn-primary">Sell on MF</a>
+  </div>
+</nav>
+
+<!-- ═══ MOBILE MENU DRAWER ═══ -->
+<div class="mobile-menu-backdrop" id="mobileMenuBackdrop" onclick="toggleMobileMenu()"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <span class="mobile-menu-title">Menu</span>
+    <button class="mobile-menu-close" onclick="toggleMobileMenu()">✕</button>
+  </div>
+  <div class="mobile-menu-links">
+    <!-- Search -->
+    <a href="#" class="mobile-menu-link" onclick="toggleMobileMenu(); setTimeout(toggleSearch, 150);">
+      <span class="mobile-menu-icon">🔍</span> Search Parts
+    </a>
+
+    <div class="mobile-menu-divider"></div>
+
+    <!-- Shop -->
+    <div class="mobile-menu-section-label">Shop</div>
+    <a href="#products" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🛍</span> All Products
+    </a>
+    <a href="#categories" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🔥</span> Engine & Induction
+    </a>
+    <a href="#categories" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">💨</span> Exhaust Systems
+    </a>
+    <a href="#categories" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🔩</span> Suspension
+    </a>
+    <a href="#categories" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🛑</span> Brakes
+    </a>
+    <a href="#categories" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🏎</span> Exterior
+    </a>
+    <a href="#categories" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🛞</span> Wheels & Tires
+    </a>
+    <a href="#categories" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">⚡</span> Electronics & Tuning
+    </a>
+
+    <div class="mobile-menu-divider"></div>
+
+    <!-- Explore -->
+    <div class="mobile-menu-section-label">Explore</div>
+    <a href="#brands" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🏷</span> Brands
+    </a>
+    <a href="#guides" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">📖</span> Build Guides
+    </a>
+    <a href="https://youtube.com" target="_blank" rel="noopener" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">📹</span> YouTube Channel
+    </a>
+    <a href="#reviews" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">💬</span> Community
+    </a>
+    <a href="#products" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🆕</span> New Arrivals
+    </a>
+
+    <div class="mobile-menu-divider"></div>
+
+    <!-- Help -->
+    <div class="mobile-menu-section-label">Help</div>
+    <a href="#how-it-works" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">🎯</span> Fitment Help
+    </a>
+    <a href="#" class="mobile-menu-link" onclick="toggleMobileMenu(); showToast('Order tracking coming soon', '📦');">
+      <span class="mobile-menu-icon">📦</span> Track Your Order
+    </a>
+    <a href="#" class="mobile-menu-link" onclick="toggleMobileMenu(); showToast('Returns portal coming soon', '↩️');">
+      <span class="mobile-menu-icon">↩️</span> Returns
+    </a>
+    <a href="#" class="mobile-menu-link" onclick="toggleMobileMenu(); showToast('Contact form coming soon — email hello@mustangforce.com', '✉️');">
+      <span class="mobile-menu-icon">✉️</span> Contact Us
+    </a>
+    <a href="#hero" class="mobile-menu-link" onclick="toggleMobileMenu()">
+      <span class="mobile-menu-icon">ℹ️</span> About
+    </a>
+
+    <div class="mobile-menu-divider"></div>
+
+    <!-- Account -->
+    <a href="#" class="mobile-menu-link" onclick="toggleMobileMenu(); showToast('Saved items will appear here once you heart products', '♡');">
+      <span class="mobile-menu-icon">♡</span> Saved Items
+    </a>
+  </div>
+  <div class="mobile-menu-footer">
+    <a href="#for-manufacturers" class="mobile-menu-cta" onclick="toggleMobileMenu()">Sell on MustangForce</a>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="hero-bg lvl-enthusiast" id="heroBg"></div>
+  <div class="hero-dots"></div>
+  
+  <!-- Branded watermark -->
+  <div class="hero-brand-mark">
+    <svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Large horse silhouette -->
+      <path d="M80 40C80 40 100 20 140 20C160 20 170 30 180 40L200 60C210 70 220 80 230 100C240 120 240 140 230 160L220 180C210 200 190 210 170 220L140 230C120 240 100 240 80 230C60 220 50 200 50 180V120C50 100 60 80 70 60L80 40Z" fill="currentColor" opacity="0.04"/>
+      <!-- Speed accent -->
+      <path d="M250 80L290 60M250 120L300 110M240 160L280 155M230 200L270 195" stroke="currentColor" stroke-width="6" stroke-linecap="round" opacity="0.025"/>
+      <!-- Subtle lightning -->
+      <path d="M140 80L120 130H150L130 180" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.03"/>
+    </svg>
+  </div>
+
+  <div class="hero-inner">
+    <!-- LEFT: copy + level selector -->
+    <div>
+      <!-- Trust badges -->
+      <div class="hero-trust rv">
+        <span class="trust-badge"><span class="icon">✅</span> Fitment Guaranteed</span>
+        <span class="trust-divider"></span>
+        <span class="trust-badge"><span class="icon">🚚</span> Ships Direct</span>
+        <span class="trust-divider"></span>
+        <span class="trust-badge"><span class="icon">⭐</span> 4.9 / 5 avg</span>
+      </div>
+
+      <!-- Level selector -->
+      <div class="level-label rv d1">What kind of builder are you?</div>
+      <div class="level-selector rv d1">
+        <button class="level-btn" data-level="beginner" onclick="setLevel('beginner', this)">
+          🌱 Beginner <span class="lbadge">Just started</span>
+        </button>
+        <button class="level-btn active-enthusiast" data-level="enthusiast" onclick="setLevel('enthusiast', this)">
+          🔧 Enthusiast <span class="lbadge">Most popular</span>
+        </button>
+        <button class="level-btn" data-level="track" onclick="setLevel('track', this)">
+          🏁 Track Build <span class="lbadge">Performance</span>
+        </button>
+      </div>
+
+      <h1 class="hero-h rv d2" id="heroH">
+        Find the Right<br>Parts for Your<br><span class="line-red hero-dynamic" id="heroAccent">Mustang.</span>
+      </h1>
+
+      <p class="hero-sub rv d3 hero-dynamic" id="heroSub">
+        Shop from 400+ verified manufacturers — direct to your door. Every part guaranteed to fit, or we cover the return.
+      </p>
+
+      <div class="hero-cta rv d4">
+        <a href="#products" class="btn-hero primary" id="heroCta">
+          Shop Parts <span class="arrow">→</span>
+        </a>
+        <a href="#guides" class="btn-hero ghost">📹 Watch Build Videos</a>
+      </div>
+    </div>
+
+    <!-- RIGHT: YMM card -->
+    <div class="hero-right rv d3">
+      <div class="hero-right-glow"></div>
+      <div class="hero-right-ring"></div>
+      <div class="hero-right-stats">
+        <div class="hero-stat-pill"><span class="hero-stat-num">48K+</span> Parts Listed</div>
+        <div class="hero-stat-pill"><span class="hero-stat-num">400+</span> Brands</div>
+        <div class="hero-stat-pill"><span class="hero-stat-num">4.9★</span> Avg Rating</div>
+      </div>
+      <div class="hero-ymm-card">
+        <div class="ymm-card-title">
+          <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;opacity:0.7;">
+            <path d="M8 4C8 4 10 2 14 2C16 2 17 3 18 4L20 6C21 7 22 8 23 10C24 12 24 14 23 16L22 18C21 20 19 21 17 22L14 23C12 24 10 24 8 23C6 22 5 20 5 18V12C5 10 6 8 7 6L8 4Z" fill="currentColor"/>
+            <path d="M14 8L12 13H15L13 18" stroke="#E8253C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Find Parts That Fit
+        </div>
+        <div class="ymm-card-sub">Select your Mustang and we'll show only compatible parts</div>
+
+        <div class="ymm-field-group">
+          <div>
+            <div class="ymm-field-label">Year</div>
+            <div class="ymm-select-styled">
+              <select id="heroYear" onchange="syncYMM('hero')">
+                <option value="">Select year...</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <div class="ymm-field-label">Model / Trim</div>
+            <div class="ymm-select-styled" id="heroModelWrap">
+              <select id="heroModel" disabled>
+                <option value="">Select year first...</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <div class="ymm-field-label">Category (optional)</div>
+            <div class="ymm-select-styled">
+              <select id="heroCat">
+                <option value="">All categories</option>
+                <option value="engine">Engine &amp; Induction</option>
+                <option value="exhaust">Exhaust Systems</option>
+                <option value="suspension">Suspension &amp; Handling</option>
+                <option value="brakes">Brakes</option>
+                <option value="exterior">Exterior Styling</option>
+                <option value="wheels">Wheels &amp; Tires</option>
+                <option value="electronics">Electronics &amp; Tuning</option>
+                <option value="restoration">Restoration</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button class="ymm-search-full" onclick="handleSearch('hero')">🔍 Show Compatible Parts</button>
+
+        <div class="ymm-divider">or browse popular builds</div>
+
+        <div class="ymm-popular">
+          <div class="ymm-pop-label">Quick select</div>
+          <span class="ymm-chip">2020 GT500</span>
+          <span class="ymm-chip">2023 Mach 1</span>
+          <span class="ymm-chip">Fox Body</span>
+          <span class="ymm-chip">2015 GT</span>
+          <span class="ymm-chip">Dark Horse</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Generation pills -->
+  <div class="hero-fitments rv d5">
+    <span class="fit-label">All Generations:</span>
+    <span class="fit-chip">2024+ Dark Horse <span class="gen">S650</span></span>
+    <span class="fit-chip">2015–2023 <span class="gen">S550</span></span>
+    <span class="fit-chip">2005–2014 <span class="gen">S197</span></span>
+    <span class="fit-chip">1994–2004 <span class="gen">SN95</span></span>
+    <span class="fit-chip">1979–1993 <span class="gen">Fox Body</span></span>
+    <span class="fit-chip">1964–1973 <span class="gen">Classic</span></span>
+  </div>
+
+  <div class="hero-fade-bottom"></div>
+</section>
+
+<!-- ═══ TRUST STRIP ═══ -->
+<div class="trust-strip">
+  <div class="ts-item rv">
+    <div class="ts-icon amber">🎯</div>
+    <div class="ts-text">
+      <strong>Fitment Guaranteed</strong>
+      <span>Wrong fit? We cover the return, no questions.</span>
+    </div>
+  </div>
+  <div class="ts-item rv d1">
+    <div class="ts-icon green">🚚</div>
+    <div class="ts-text">
+      <strong>Ships Direct</strong>
+      <span>Straight from the manufacturer's warehouse.</span>
+    </div>
+  </div>
+  <div class="ts-item rv d2">
+    <div class="ts-icon red">🛡️</div>
+    <div class="ts-text">
+      <strong>Buyer Protection</strong>
+      <span>Payments held in escrow until you confirm delivery.</span>
+    </div>
+  </div>
+  <div class="ts-item rv d3">
+    <div class="ts-icon blue">💬</div>
+    <div class="ts-text">
+      <strong>AI Support 24/7</strong>
+      <span>Compatibility answers in under 2 minutes, any time.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="sec how-section" id="how-it-works">
+  <div class="sec-header">
+    <div>
+      <div class="sec-label rv">How MustangForce Works</div>
+      <h2 class="sec-h rv d1">Simple from search<br>to driveway.</h2>
+    </div>
+  </div>
+  <div class="how-grid rv d2">
+    <div class="how-step">
+      <div class="how-step-num">STEP 01</div>
+      <span class="how-icon">🚗</span>
+      <div class="how-step-title">Select Your Mustang</div>
+      <div class="how-step-body">Pick your year, model, and trim. Every part you see is guaranteed to be compatible — no more buying the wrong thing.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">STEP 02</div>
+      <span class="how-icon">🔍</span>
+      <div class="how-step-title">Browse Verified Parts</div>
+      <div class="how-step-body">Shop from 400+ verified manufacturers. Read real reviews from real Mustang owners. Compare specs side by side.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">STEP 03</div>
+      <span class="how-icon">📦</span>
+      <div class="how-step-title">Ships Direct to You</div>
+      <div class="how-step-body">Your order goes straight from the manufacturer to your door — no distribution warehouses, no extra markup.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CATEGORIES ═══ -->
+<section class="sec cats-section" id="categories">
+  <div class="sec-header">
+    <div>
+      <div class="sec-label rv">Browse by Category</div>
+      <h2 class="sec-h rv d1">What are you<br>upgrading today?</h2>
+    </div>
+    <a href="#products" class="link-arrow rv d2">View all categories</a>
+  </div>
+  <div class="cats-grid">
+    <a href="#products" class="cat-tile ct-engine rv" data-filter="performance" onclick="filterFromCategory('Performance')">
+      <div class="cat-tile-icon" style="background:var(--red-soft)">🔥</div>
+      <div class="cat-tile-name">Engine &<br>Induction</div>
+      <div class="cat-tile-count">2,840 parts</div>
+      <div class="cat-tile-arrow">→</div>
+    </a>
+    <a href="#products" class="cat-tile ct-exhaust rv d1" data-filter="performance" onclick="filterFromCategory('Performance')">
+      <div class="cat-tile-icon" style="background:rgba(120,120,120,0.12)">💨</div>
+      <div class="cat-tile-name">Exhaust<br>Systems</div>
+      <div class="cat-tile-count">1,620 parts</div>
+      <div class="cat-tile-arrow">→</div>
+    </a>
+    <a href="#products" class="cat-tile ct-suspend rv d2" data-filter="handling" onclick="filterFromCategory('Handling')">
+      <div class="cat-tile-icon" style="background:rgba(59,130,246,0.12)">🔩</div>
+      <div class="cat-tile-name">Suspension<br>& Handling</div>
+      <div class="cat-tile-count">3,100 parts</div>
+      <div class="cat-tile-arrow">→</div>
+    </a>
+    <a href="#products" class="cat-tile ct-wheels rv d3" data-filter="looks" onclick="filterFromCategory('Looks')">
+      <div class="cat-tile-icon" style="background:var(--amber-soft)">🛞</div>
+      <div class="cat-tile-name">Wheels<br>& Tires</div>
+      <div class="cat-tile-count">4,200 parts</div>
+      <div class="cat-tile-arrow">→</div>
+    </a>
+    <a href="#products" class="cat-tile ct-brakes rv d1" data-filter="performance" onclick="filterFromCategory('Performance')">
+      <div class="cat-tile-icon" style="background:rgba(232,37,60,0.15)">🛑</div>
+      <div class="cat-tile-name">Brakes<br>& Rotors</div>
+      <div class="cat-tile-count">980 parts</div>
+      <div class="cat-tile-arrow">→</div>
+    </a>
+    <a href="#products" class="cat-tile ct-exterior rv d2" data-filter="looks" onclick="filterFromCategory('Looks')">
+      <div class="cat-tile-icon" style="background:var(--green-soft)">🏎</div>
+      <div class="cat-tile-name">Exterior<br>Styling</div>
+      <div class="cat-tile-count">5,800 parts</div>
+      <div class="cat-tile-arrow">→</div>
+    </a>
+    <a href="#products" class="cat-tile ct-interior rv d3" data-filter="looks" onclick="filterFromCategory('Looks')">
+      <div class="cat-tile-icon" style="background:rgba(168,85,247,0.1)">🪑</div>
+      <div class="cat-tile-name">Interior<br>Upgrades</div>
+      <div class="cat-tile-count">2,100 parts</div>
+      <div class="cat-tile-arrow">→</div>
+    </a>
+    <a href="#products" class="cat-tile ct-elec rv d4" data-filter="value" onclick="filterFromCategory('Value')">
+      <div class="cat-tile-icon" style="background:rgba(6,182,212,0.1)">⚡</div>
+      <div class="cat-tile-name">Electronics<br>& Tuning</div>
+      <div class="cat-tile-count">1,980 parts</div>
+      <div class="cat-tile-arrow">→</div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ PRODUCTS ═══ -->
+<section class="sec products-section" id="products">
+  <div class="sec-header">
+    <div>
+      <div class="sec-label rv">Featured This Week</div>
+      <h2 class="sec-h rv d1">Top-rated parts<br>from real builders.</h2>
+    </div>
+    <div class="sec-header-actions">
+      <div class="filter-row rv d2">
+        <button class="filter-pill on">All</button>
+        <button class="filter-pill">Performance</button>
+        <button class="filter-pill">Handling</button>
+        <button class="filter-pill">Looks</button>
+        <button class="filter-pill">Value</button>
+      </div>
+      <a href="#products" class="link-arrow rv d2">View all products</a>
+    </div>
+  </div>
+
+  <div class="products-grid" id="productsGrid">
+    <div class="prod-card rv" data-categories="performance,all">
+      <div class="prod-img-wrap">
+        <div class="prod-emoji">🔊</div>
+        <span class="prod-tag tag-bestseller">Best Seller</span>
+        <div class="prod-heart" onclick="toggleHeart(this, event)">♡</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-brand">Borla Performance</div>
+        <div class="prod-name">ATAK Cat-Back Exhaust System</div>
+        <div class="prod-fit"><span class="prod-fit-dot"></span> Fits 2015–2023 Mustang GT 5.0L V8</div>
+        <div class="prod-stars"><span class="stars-gold">★★★★★</span><span class="stars-count">(847 reviews)</span></div>
+      </div>
+      <div class="prod-footer">
+        <div class="prod-price-wrap">
+          <span class="prod-price">$1,299</span>
+        </div>
+        <button class="prod-add-btn" onclick="addToCart('Borla ATAK Cat-Back Exhaust', 1299)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="prod-card rv d1" data-categories="handling,all">
+      <div class="prod-img-wrap">
+        <div class="prod-emoji">🌀</div>
+        <span class="prod-tag tag-new">New Drop</span>
+        <div class="prod-heart" onclick="toggleHeart(this, event)">♡</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-brand">Steeda Autosports</div>
+        <div class="prod-name">Ultra-Street Lowering Spring Kit</div>
+        <div class="prod-fit"><span class="prod-fit-dot"></span> Fits 2024 Mustang Dark Horse / GT</div>
+        <div class="prod-stars"><span class="stars-gold">★★★★☆</span><span class="stars-count">(312 reviews)</span></div>
+      </div>
+      <div class="prod-footer">
+        <div class="prod-price-wrap"><span class="prod-price">$389</span></div>
+        <button class="prod-add-btn" onclick="addToCart('Steeda Lowering Springs', 389)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="prod-card rv d2" data-categories="performance,value,all">
+      <div class="prod-img-wrap">
+        <div class="prod-emoji">💨</div>
+        <span class="prod-tag tag-toprated">Top Rated</span>
+        <div class="prod-heart" onclick="toggleHeart(this, event)">♡</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-brand">Roush Performance</div>
+        <div class="prod-name">Phase 2 Cold Air Intake</div>
+        <div class="prod-fit"><span class="prod-fit-dot"></span> Fits 2018–2023 Mustang GT 5.0L</div>
+        <div class="prod-stars"><span class="stars-gold">★★★★★</span><span class="stars-count">(1,204 reviews)</span></div>
+      </div>
+      <div class="prod-footer">
+        <div class="prod-price-wrap">
+          <span class="prod-price">$449</span>
+          <span class="prod-price-was">$499</span>
+        </div>
+        <button class="prod-add-btn" onclick="addToCart('Roush Phase 2 CAI', 449)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="prod-card rv d3" data-categories="handling,looks,all">
+      <div class="prod-img-wrap">
+        <div class="prod-emoji">🛞</div>
+        <div class="prod-heart" onclick="toggleHeart(this, event)">♡</div>
+      </div>
+      <div class="prod-body">
+        <div class="prod-brand">KW Suspensions</div>
+        <div class="prod-name">V3 Coilover Inox-Line Kit</div>
+        <div class="prod-fit"><span class="prod-fit-dot"></span> Fits 2015–2023 GT / EcoBoost</div>
+        <div class="prod-stars"><span class="stars-gold">★★★★★</span><span class="stars-count">(489 reviews)</span></div>
+      </div>
+      <div class="prod-footer">
+        <div class="prod-price-wrap"><span class="prod-price">$2,149</span></div>
+        <button class="prod-add-btn" onclick="addToCart('KW V3 Coilovers', 2149)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BUILD GUIDE BANNER ═══ -->
+<div class="guide-banner rv" id="guides">
+  <div>
+    <div class="guide-banner-eyebrow">✨ Not sure where to start?</div>
+    <div class="guide-banner-h">We'll guide your first build.</div>
+    <div class="guide-banner-sub">New to modifying Mustangs? Our free build guides walk you through the best first upgrades for every budget — from a $300 air intake to a full Stage 2 power package.</div>
+  </div>
+  <div class="guide-btns">
+    <a href="#hero" class="btn-amber" onclick="scrollToYMM()">📖 Start Your Build Guide →</a>
+    <a href="https://youtube.com" target="_blank" rel="noopener" class="btn-link">Watch on YouTube →</a>
+  </div>
+</div>
+
+<!-- ═══ BRANDS ═══ -->
+<section class="brands-section" id="brands">
+  <div style="text-align:center;margin-bottom:28px">
+    <div class="sec-label rv" style="justify-content:center">Trusted Brands</div>
+    <h2 class="sec-h rv d1" style="margin-bottom:6px">400+ Verified Manufacturers</h2>
+    <p class="rv d2" style="font-size:15px;color:var(--muted)">Every brand ships direct. Every product is verified before listing.</p>
+  </div>
+  <div class="brands-scroll rv d3">
+    <span class="brand-pill">Borla</span>
+    <span class="brand-pill">Steeda</span>
+    <span class="brand-pill">Roush</span>
+    <span class="brand-pill">KW Suspensions</span>
+    <span class="brand-pill">Brembo</span>
+    <span class="brand-pill">Cervini's</span>
+    <span class="brand-pill">Mountune</span>
+    <span class="brand-pill">Lund Racing</span>
+    <span class="brand-pill">Bullitt Exhaust</span>
+    <span class="brand-pill">Shelby American</span>
+    <span class="brand-pill">Ford Performance</span>
+    <span class="brand-pill">SVT</span>
+    <span class="brand-pill">Turbosmart</span>
+    <span class="brand-pill">Eibach</span>
+    <span class="brand-pill">H&R</span>
+    <span class="brand-pill">Wilwood</span>
+  </div>
+</section>
+
+<!-- ═══ DUAL AUDIENCE SPLIT ═══ -->
+<section class="split-section" id="for-manufacturers">
+  <!-- Consumer side -->
+  <div class="split-pane consumer">
+    <span class="split-tag consumer-tag rv">✅ For Mustang Owners</span>
+    <h2 class="split-h rv d1">Buy with confidence.<br>Every time.</h2>
+    <p class="split-body rv d2">We handle the hard part. You just pick the right part for your build — and if something goes wrong, we've got you covered.</p>
+    <div class="feature-tiles rv d2">
+      <div class="ftile">
+        <span class="ftile-icon">🎯</span>
+        <div class="ftile-text">
+          <strong>Fitment Guarantee</strong>
+          <span>Mapped to your exact year, model, and trim. If it doesn't fit as listed, we cover the return. No arguing.</span>
+        </div>
+      </div>
+      <div class="ftile">
+        <span class="ftile-icon">💬</span>
+        <div class="ftile-text">
+          <strong>AI Support Anytime</strong>
+          <span>Ask "will this fit my 2020 GT500 with stock suspension?" at 2am and get a real answer in under 2 minutes.</span>
+        </div>
+      </div>
+      <div class="ftile">
+        <span class="ftile-icon">🔒</span>
+        <div class="ftile-text">
+          <strong>Buyer Protection</strong>
+          <span>Your payment is held securely until your order is confirmed delivered — we only release funds when you're happy.</span>
+        </div>
+      </div>
+      <div class="ftile">
+        <span class="ftile-icon">⭐</span>
+        <div class="ftile-text">
+          <strong>Verified Reviews Only</strong>
+          <span>Every review is tied to a confirmed purchase. No fake ratings. Real opinions from real Mustang owners.</span>
+        </div>
+      </div>
+    </div>
+    <a href="#products" class="btn-hero primary" style="width:fit-content">Shop All Parts →</a>
+  </div>
+
+  <!-- Manufacturer side -->
+  <div class="split-pane mfr">
+    <span class="split-tag mfr-tag rv">🔧 For Manufacturers</span>
+    <h2 class="split-h rv d1">Sell more.<br>Keep more.<br>Always.</h2>
+    <p class="split-body rv d2">List free. We drive the traffic through influencers, SEO, and YouTube — and only take a commission when you make a sale.</p>
+
+    <div class="margin-rows rv d2" id="marginRows">
+      <div>
+        <div class="mrow-label">
+          <span class="mrow-name">MustangForce</span>
+          <span class="mrow-val">85–92% margin</span>
+        </div>
+        <div class="mrow-track"><div class="mrow-fill fill-red" data-w="92"></div></div>
+      </div>
+      <div>
+        <div class="mrow-label">
+          <span class="mrow-name">Your own website (high CAC)</span>
+          <span class="mrow-val">~88%</span>
+        </div>
+        <div class="mrow-track"><div class="mrow-fill fill-amber" data-w="88"></div></div>
+      </div>
+      <div>
+        <div class="mrow-label">
+          <span class="mrow-name">Amazon Third Party</span>
+          <span class="mrow-val">65–75%</span>
+        </div>
+        <div class="mrow-track"><div class="mrow-fill fill-dim" data-w="70"></div></div>
+      </div>
+      <div>
+        <div class="mrow-label">
+          <span class="mrow-name">Traditional Distributor</span>
+          <span class="mrow-val">35–50%</span>
+        </div>
+        <div class="mrow-track"><div class="mrow-fill fill-dim" data-w="42"></div></div>
+      </div>
+    </div>
+
+    <div class="mfr-step-list rv d3">
+      <div class="mfr-step-row">
+        <div class="mfr-step-circle">1</div>
+        <div class="mfr-step-body">
+          <strong>Create your storefront — free</strong>
+          <p>No upfront costs. List unlimited products. First 30 days commission-free.</p>
+        </div>
+      </div>
+      <div class="mfr-step-row">
+        <div class="mfr-step-circle">2</div>
+        <div class="mfr-step-body">
+          <strong>We drive the demand</strong>
+          <p>Influencer campaigns, YouTube reviews, SEO, and targeted social — handled by us.</p>
+        </div>
+      </div>
+      <div class="mfr-step-row">
+        <div class="mfr-step-circle">3</div>
+        <div class="mfr-step-body">
+          <strong>Ship direct, get paid weekly</strong>
+          <p>Fulfill from your warehouse. Weekly payouts with full transaction detail.</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="#cta" class="btn-hero primary rv d4" style="width:fit-content" onclick="showToast('Applications opening soon — join the waitlist!', '🔧')">Apply to List Your Brand →</a>
+  </div>
+</section>
+
+<!-- ═══ REVIEWS ═══ -->
+<section class="sec reviews-section" id="reviews">
+  <div class="sec-header">
+    <div>
+      <div class="sec-label rv">Real Reviews</div>
+      <h2 class="sec-h rv d1">Don't take our word for it.</h2>
+    </div>
+    <a href="#reviews" class="link-arrow rv d2" onclick="showToast('More reviews coming soon as builders share their experiences', '⭐')">See all reviews</a>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card rv">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Finally a marketplace where I can shop from Steeda, Borla, and KW in one checkout — and the fitment data is actually accurate. Ordered at 9pm, shipped next morning."</p>
+      <div class="review-author">
+        <div class="review-av">J</div>
+        <div>
+          <span class="review-name">Jake R.</span>
+          <span class="review-role">2020 GT500 · Austin, TX</span>
+        </div>
+      </div>
+    </div>
+    <div class="review-card rv d1">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"As someone new to modifying, I was intimidated. The build guide walked me through everything step by step. My first mod took 45 minutes and looked factory-quality."</p>
+      <div class="review-author">
+        <div class="review-av">A</div>
+        <div>
+          <span class="review-name">Alyssa T.</span>
+          <span class="review-role">2022 EcoBoost · Denver, CO</span>
+        </div>
+      </div>
+    </div>
+    <div class="review-card rv d2">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"The AI support answered my compatibility question at midnight. Knew my exact build — '2015 GT with lowered suspension' — and gave me part-specific answers instantly."</p>
+      <div class="review-author">
+        <div class="review-av">M</div>
+        <div>
+          <span class="review-name">Marcus C.</span>
+          <span class="review-role">2015 Mustang GT · Chicago, IL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="final-cta" id="cta">
+  <div class="sec-label rv" style="justify-content:center">Ready to build?</div>
+  <h2 class="final-h rv d1">Your Mustang.<br><span>Your way.</span></h2>
+  <p class="final-sub rv d2">25,000+ parts from verified manufacturers. Every generation, 1964 to today. Fit guaranteed, shipped direct.</p>
+  <div class="final-btns rv d3">
+    <a href="#hero" class="btn-white" onclick="scrollToYMM()">🔍 Find Parts for My Mustang</a>
+    <a href="#for-manufacturers" class="btn-outline-white">Sell on MustangForce →</a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-wrap">
+        <svg class="footer-logo-icon" width="52" height="52" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="96" fill="#111"/>
+          <g transform="translate(30,20) scale(0.7)">
+            <path d="M85 10 L75 45 L90 30 Z" fill="#c0220a"/>
+            <path d="M95 5 L90 50 L105 25 Z" fill="#d4341a"/>
+            <path d="M108 8 L100 55 L118 30 Z" fill="#c0220a"/>
+            <path d="M60 30 L55 65 L75 45 Z" fill="#8b1a0e"/>
+            <path d="M70 50 C50 55, 40 80, 38 100 C36 120, 40 145, 50 165 C55 175, 60 185, 55 200 L75 200 C78 190, 80 180, 85 172 C95 158, 110 150, 115 135 C120 120, 125 100, 120 80 C115 60, 100 45, 85 42 Z" fill="#e8432a"/>
+            <path d="M85 172 C80 185, 78 195, 82 210 L105 230 L130 230 L120 200 C115 180, 110 165, 115 135 C105 155, 95 165, 85 172 Z" fill="#c93a1e"/>
+            <path d="M75 120 C80 130, 85 145, 85 172 C90 160, 100 150, 110 138 C105 145, 95 140, 85 130 Z" fill="#8b1a0e"/>
+            <path d="M85 42 C95 38, 105 35, 110 25 C108 40, 112 50, 120 55 C115 50, 118 40, 125 35 C120 50, 122 65, 120 80 C118 68, 112 58, 100 52 Z" fill="#8b1a0e"/>
+            <path d="M38 100 C35 110, 32 125, 38 140 C42 148, 48 155, 50 165 C45 155, 40 140, 42 125 Z" fill="#c93a1e"/>
+            <ellipse cx="48" cy="158" rx="4" ry="5" fill="#6b1008"/>
+            <ellipse cx="78" cy="82" rx="5" ry="6" fill="#1a1a1a"/>
+            <ellipse cx="79" cy="81" rx="2" ry="2.5" fill="#c8d41a"/>
+            <path d="M80 18 L72 40 L88 35 Z" fill="#e8432a"/>
+            <path d="M105 12 L95 38 L108 32 Z" fill="#d4341a"/>
+          </g>
+        </svg>
+        <div class="footer-logo-text">
+          <div class="footer-logo">MUSTANG<span>FORCE</span></div>
+        </div>
+      </div>
+      <p class="footer-desc">The direct-to-consumer marketplace for Mustang parts. Every generation, every build — shipped straight from the manufacturer to your door.</p>
+      <div class="footer-socials">
+        <a href="https://youtube.com" target="_blank" rel="noopener" class="fsoc" title="YouTube">YT</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="fsoc" title="Instagram">IG</a>
+        <a href="https://facebook.com" target="_blank" rel="noopener" class="fsoc" title="Facebook">FB</a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener" class="fsoc" title="TikTok">TK</a>
+        <a href="https://x.com" target="_blank" rel="noopener" class="fsoc" title="X (Twitter)">X</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="#categories">Engine & Induction</a></li>
+        <li><a href="#categories">Exhaust Systems</a></li>
+        <li><a href="#categories">Suspension</a></li>
+        <li><a href="#categories">Brakes</a></li>
+        <li><a href="#categories">Exterior</a></li>
+        <li><a href="#categories">Wheels & Tires</a></li>
+        <li><a href="#categories">Electronics</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Explore</h5>
+      <ul>
+        <li><a href="#guides">Build Guides</a></li>
+        <li><a href="https://youtube.com" target="_blank" rel="noopener">YouTube Channel</a></li>
+        <li><a href="#reviews">Community Forum</a></li>
+        <li><a href="#brands">Brand Directory</a></li>
+        <li><a href="#products">New Arrivals</a></li>
+        <li><a href="#products">On Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Help & Company</h5>
+      <ul>
+        <li><a href="#how-it-works">Fitment Help</a></li>
+        <li><a href="#" onclick="showToast('Order tracking coming soon', '📦');return false;">Track Your Order</a></li>
+        <li><a href="#" onclick="showToast('Returns portal coming soon', '↩️');return false;">Returns Portal</a></li>
+        <li><a href="#for-manufacturers">Sell on MustangForce</a></li>
+        <li><a href="#hero">About Us</a></li>
+        <li><a href="#" onclick="showToast('Contact form coming soon — email hello@mustangforce.com', '✉️');return false;">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">© 2025 MustangForce LLC. Not affiliated with Ford Motor Company. Mustang® is a registered trademark of Ford Motor Company.</div>
+    <div class="footer-legal-links">
+      <a href="#" onclick="showToast('Privacy policy coming soon', '🔒');return false;">Privacy</a>
+      <a href="#" onclick="showToast('Terms of service coming soon', '📋');return false;">Terms</a>
+      <a href="#" onclick="showToast('Cookie policy coming soon', '🍪');return false;">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ TOAST CONTAINER ═══ -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ═══ SEARCH OVERLAY ═══ -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-input-wrap">
+    <span style="font-size:18px;color:var(--muted)">🔍</span>
+    <input class="search-input" id="searchInput" type="text" placeholder="Search parts, brands, or categories..." autocomplete="off">
+    <button class="search-close-btn" onclick="toggleSearch()">ESC</button>
+  </div>
+  <div class="search-suggestions">
+    <div class="search-sug-label">Popular searches</div>
+    <span class="search-sug-chip" onclick="searchFor(this)">Cold Air Intake</span>
+    <span class="search-sug-chip" onclick="searchFor(this)">Exhaust System</span>
+    <span class="search-sug-chip" onclick="searchFor(this)">Coilovers</span>
+    <span class="search-sug-chip" onclick="searchFor(this)">GT500 Parts</span>
+    <span class="search-sug-chip" onclick="searchFor(this)">Dark Horse Mods</span>
+    <span class="search-sug-chip" onclick="searchFor(this)">Fox Body Restoration</span>
+    <span class="search-sug-chip" onclick="searchFor(this)">Brake Kit</span>
+    <span class="search-sug-chip" onclick="searchFor(this)">Lowering Springs</span>
+  </div>
+</div>
+
+<!-- ═══ CART PREVIEW ═══ -->
+<div class="cart-preview" id="cartPreview">
+  <div class="cart-preview-header">
+    <div class="cart-preview-title">Your Cart</div>
+    <button class="cart-preview-close" onclick="closeCartPreview()">✕</button>
+  </div>
+  <div id="cartItems">
+    <div class="cart-empty">
+      <span class="cart-empty-icon">🛒</span>
+      Your cart is empty.<br>Browse parts and add items to get started.
+    </div>
+  </div>
+  <div id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span class="cart-total-label">Subtotal</span>
+      <span class="cart-total-val" id="cartTotal">$0</span>
+    </div>
+    <button class="cart-checkout-btn" onclick="showToast('Checkout coming soon — join the waitlist for early access!', '🚀')">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   MUSTANG TRIM DATABASE
+   Sources: Ford media, Car & Driver, Motor Trend specs
+═══════════════════════════════════════════════════════ */
+const TRIMS = {
+  // ── S650 Generation (2024–present) ──────────────────
+  2026: [
+    { value: 'ecoboost',          label: 'EcoBoost (2.3L Turbo 4-cyl)' },
+    { value: 'ecoboost-premium',  label: 'EcoBoost Premium (2.3L Turbo 4-cyl)' },
+    { value: 'gt',                label: 'GT (5.0L V8)' },
+    { value: 'gt-premium',        label: 'GT Premium (5.0L V8)' },
+    { value: 'dark-horse',        label: 'Dark Horse (5.0L V8 — Hand-built)' },
+    { value: 'dark-horse-premium',label: 'Dark Horse Premium (5.0L V8)' },
+    { value: 'gt-california-sp',  label: 'GT California Special (5.0L V8)' },
+    { value: 'convertible-eco',   label: 'EcoBoost Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible (5.0L V8)' },
+    { value: 'gtd',               label: 'GTD (5.2L Supercharged V8 — Track)' },
+  ],
+  2025: [
+    { value: 'ecoboost',          label: 'EcoBoost (2.3L Turbo 4-cyl)' },
+    { value: 'ecoboost-premium',  label: 'EcoBoost Premium (2.3L Turbo 4-cyl)' },
+    { value: 'gt',                label: 'GT (5.0L V8)' },
+    { value: 'gt-premium',        label: 'GT Premium (5.0L V8)' },
+    { value: 'dark-horse',        label: 'Dark Horse (5.0L V8 — Hand-built)' },
+    { value: 'dark-horse-premium',label: 'Dark Horse Premium (5.0L V8)' },
+    { value: 'gt-california-sp',  label: 'GT California Special (5.0L V8)' },
+    { value: 'convertible-eco',   label: 'EcoBoost Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible (5.0L V8)' },
+    { value: 'gtd',               label: 'GTD (5.2L Supercharged V8 — Track)' },
+  ],
+  2024: [
+    { value: 'ecoboost',          label: 'EcoBoost (2.3L Turbo 4-cyl)' },
+    { value: 'ecoboost-premium',  label: 'EcoBoost Premium (2.3L Turbo 4-cyl)' },
+    { value: 'gt',                label: 'GT (5.0L V8)' },
+    { value: 'gt-premium',        label: 'GT Premium (5.0L V8)' },
+    { value: 'dark-horse',        label: 'Dark Horse (5.0L V8 — Hand-built)' },
+    { value: 'dark-horse-premium',label: 'Dark Horse Premium (5.0L V8)' },
+    { value: 'gt-california-sp',  label: 'GT California Special (5.0L V8)' },
+    { value: 'convertible-eco',   label: 'EcoBoost Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible (5.0L V8)' },
+  ],
+  // ── S550 Generation (2015–2023) ─────────────────────
+  2023: [
+    { value: 'ecoboost',          label: 'EcoBoost (2.3L Turbo 4-cyl)' },
+    { value: 'ecoboost-premium',  label: 'EcoBoost Premium (2.3L Turbo 4-cyl)' },
+    { value: 'gt',                label: 'GT (5.0L V8)' },
+    { value: 'gt-premium',        label: 'GT Premium (5.0L V8)' },
+    { value: 'mach-1',            label: 'Mach 1 (5.0L V8 — Last year)' },
+    { value: 'mach-1-premium',    label: 'Mach 1 Premium (5.0L V8)' },
+    { value: 'gt350',             label: 'Shelby GT350 (5.2L Flat-plane V8)' },
+    { value: 'gt350r',            label: 'Shelby GT350R (5.2L Flat-plane V8 — Track)' },
+    { value: 'gt500',             label: 'Shelby GT500 (5.2L Supercharged V8 — 760hp)' },
+    { value: 'gt-california-sp',  label: 'GT California Special' },
+    { value: 'convertible-eco',   label: 'EcoBoost Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible (5.0L V8)' },
+  ],
+  2022: [
+    { value: 'ecoboost',          label: 'EcoBoost (2.3L Turbo 4-cyl)' },
+    { value: 'ecoboost-premium',  label: 'EcoBoost Premium (2.3L Turbo 4-cyl)' },
+    { value: 'gt',                label: 'GT (5.0L V8)' },
+    { value: 'gt-premium',        label: 'GT Premium (5.0L V8)' },
+    { value: 'mach-1',            label: 'Mach 1 (5.0L V8)' },
+    { value: 'mach-1-premium',    label: 'Mach 1 Premium (5.0L V8)' },
+    { value: 'gt350',             label: 'Shelby GT350 (5.2L Flat-plane V8)' },
+    { value: 'gt350r',            label: 'Shelby GT350R (5.2L Flat-plane V8)' },
+    { value: 'gt500',             label: 'Shelby GT500 (5.2L Supercharged V8 — 760hp)' },
+    { value: 'gt-california-sp',  label: 'GT California Special' },
+    { value: 'convertible-eco',   label: 'EcoBoost Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible (5.0L V8)' },
+  ],
+  2021: [
+    { value: 'ecoboost',          label: 'EcoBoost (2.3L Turbo 4-cyl)' },
+    { value: 'ecoboost-premium',  label: 'EcoBoost Premium (2.3L Turbo 4-cyl)' },
+    { value: 'gt',                label: 'GT (5.0L V8)' },
+    { value: 'gt-premium',        label: 'GT Premium (5.0L V8)' },
+    { value: 'mach-1',            label: 'Mach 1 (5.0L V8 — Reintroduced)' },
+    { value: 'mach-1-premium',    label: 'Mach 1 Premium (5.0L V8)' },
+    { value: 'gt350',             label: 'Shelby GT350 (5.2L Flat-plane V8)' },
+    { value: 'gt350r',            label: 'Shelby GT350R (5.2L Flat-plane V8)' },
+    { value: 'gt500',             label: 'Shelby GT500 (5.2L Supercharged V8 — 760hp)' },
+    { value: 'convertible-eco',   label: 'EcoBoost Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible (5.0L V8)' },
+  ],
+  2020: [
+    { value: 'ecoboost',          label: 'EcoBoost (2.3L Turbo 4-cyl)' },
+    { value: 'ecoboost-premium',  label: 'EcoBoost Premium (2.3L Turbo 4-cyl)' },
+    { value: 'gt',                label: 'GT (5.0L V8)' },
+    { value: 'gt-premium',        label: 'GT Premium (5.0L V8)' },
+    { value: 'gt500',             label: 'Shelby GT500 (5.2L Supercharged V8 — 760hp, 1st year)' },
+    { value: 'bullitt',           label: 'Bullitt (5.0L V8 — 480hp, Last year)' },
+    { value: 'convertible-eco',   label: 'EcoBoost Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible (5.0L V8)' },
+  ],
+  2019: [
+    { value: 'ecoboost',          label: 'EcoBoost (2.3L Turbo 4-cyl)' },
+    { value: 'ecoboost-premium',  label: 'EcoBoost Premium (2.3L Turbo 4-cyl)' },
+    { value: 'gt',                label: 'GT (5.0L V8 — Gen 3 Coyote)' },
+    { value: 'gt-premium',        label: 'GT Premium (5.0L V8)' },
+    { value: 'gt350',             label: 'Shelby GT350 (5.2L Flat-plane V8)' },
+    { value: 'gt350r',            label: 'Shelby GT350R (5.2L Flat-plane V8)' },
+    { value: 'bullitt',           label: 'Bullitt (5.0L V8 — 480hp, Reintroduced)' },
+    { value: 'convertible-eco',   label: 'EcoBoost Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible (5.0L V8)' },
+  ],
+  2018: [
+    { value: 'ecoboost',          label: 'EcoBoost (2.3L Turbo 4-cyl)' },
+    { value: 'ecoboost-premium',  label: 'EcoBoost Premium (2.3L Turbo 4-cyl)' },
+    { value: 'gt',                label: 'GT (5.0L V8 — Gen 3 Coyote, 1st year)' },
+    { value: 'gt-premium',        label: 'GT Premium (5.0L V8)' },
+    { value: 'gt350',             label: 'Shelby GT350 (5.2L Flat-plane V8)' },
+    { value: 'gt350r',            label: 'Shelby GT350R (5.2L Flat-plane V8)' },
+    { value: 'convertible-eco',   label: 'EcoBoost Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible (5.0L V8)' },
+  ],
+  2017: [
+    { value: 'ecoboost',          label: 'EcoBoost (2.3L Turbo 4-cyl)' },
+    { value: 'ecoboost-premium',  label: 'EcoBoost Premium (2.3L Turbo 4-cyl)' },
+    { value: 'v6',                label: 'V6 (3.7L — Final year for V6)' },
+    { value: 'v6-premium',        label: 'V6 Premium (3.7L — Final year for V6)' },
+    { value: 'gt',                label: 'GT (5.0L V8 — Gen 2 Coyote)' },
+    { value: 'gt-premium',        label: 'GT Premium (5.0L V8)' },
+    { value: 'gt350',             label: 'Shelby GT350 (5.2L Flat-plane V8)' },
+    { value: 'gt350r',            label: 'Shelby GT350R (5.2L Flat-plane V8)' },
+    { value: 'convertible-v6',    label: 'V6 Convertible' },
+    { value: 'convertible-eco',   label: 'EcoBoost Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible (5.0L V8)' },
+  ],
+  2016: [
+    { value: 'ecoboost',          label: 'EcoBoost (2.3L Turbo 4-cyl)' },
+    { value: 'ecoboost-premium',  label: 'EcoBoost Premium (2.3L Turbo 4-cyl)' },
+    { value: 'v6',                label: 'V6 (3.7L)' },
+    { value: 'v6-premium',        label: 'V6 Premium (3.7L)' },
+    { value: 'gt',                label: 'GT (5.0L V8)' },
+    { value: 'gt-premium',        label: 'GT Premium (5.0L V8)' },
+    { value: 'gt350',             label: 'Shelby GT350 (5.2L Flat-plane V8)' },
+    { value: 'gt350r',            label: 'Shelby GT350R (5.2L Flat-plane V8)' },
+    { value: 'convertible-v6',    label: 'V6 Convertible' },
+    { value: 'convertible-eco',   label: 'EcoBoost Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible (5.0L V8)' },
+  ],
+  2015: [
+    { value: 'ecoboost',          label: 'EcoBoost (2.3L Turbo 4-cyl — 1st year)' },
+    { value: 'ecoboost-premium',  label: 'EcoBoost Premium (2.3L Turbo 4-cyl)' },
+    { value: 'v6',                label: 'V6 (3.7L)' },
+    { value: 'v6-premium',        label: 'V6 Premium (3.7L)' },
+    { value: 'gt',                label: 'GT (5.0L V8 — S550 1st year)' },
+    { value: 'gt-premium',        label: 'GT Premium (5.0L V8)' },
+    { value: 'convertible-v6',    label: 'V6 Convertible' },
+    { value: 'convertible-eco',   label: 'EcoBoost Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible (5.0L V8)' },
+  ],
+  // ── S197 Generation (2005–2014) ─────────────────────
+  '2013-2014': [
+    { value: 'v6',                label: 'V6 (3.7L)' },
+    { value: 'v6-premium',        label: 'V6 Premium (3.7L)' },
+    { value: 'gt',                label: 'GT (5.0L V8 — Coyote)' },
+    { value: 'gt-premium',        label: 'GT Premium (5.0L V8)' },
+    { value: 'gt-cs',             label: 'GT California Special' },
+    { value: 'boss-302',          label: 'Boss 302 (5.0L High-rev, Last year 2013)' },
+    { value: 'boss-302-laguna',   label: 'Boss 302 Laguna Seca (Track-focused)' },
+    { value: 'gt500',             label: 'Shelby GT500 (5.8L Supercharged V8 — 662hp)' },
+    { value: 'convertible-v6',    label: 'V6 Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible' },
+    { value: 'convertible-gt500', label: 'Shelby GT500 Convertible' },
+  ],
+  '2011-2012': [
+    { value: 'v6',                label: 'V6 (3.7L — All-new engine)' },
+    { value: 'v6-premium',        label: 'V6 Premium (3.7L)' },
+    { value: 'gt',                label: 'GT (5.0L Coyote V8 — Reintroduced)' },
+    { value: 'gt-premium',        label: 'GT Premium (5.0L V8)' },
+    { value: 'gt-cs',             label: 'GT California Special' },
+    { value: 'boss-302',          label: 'Boss 302 (5.0L — 2012 intro)' },
+    { value: 'gt500',             label: 'Shelby GT500 (5.4L Supercharged V8 — 550hp)' },
+    { value: 'convertible-v6',    label: 'V6 Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible' },
+    { value: 'convertible-gt500', label: 'Shelby GT500 Convertible' },
+  ],
+  '2010': [
+    { value: 'v6',                label: 'V6 (4.0L)' },
+    { value: 'v6-premium',        label: 'V6 Premium (4.0L)' },
+    { value: 'gt',                label: 'GT (4.6L SOHC V8)' },
+    { value: 'gt-premium',        label: 'GT Premium (4.6L V8)' },
+    { value: 'gt-cs',             label: 'GT California Special' },
+    { value: 'gt500',             label: 'Shelby GT500 (5.4L Supercharged V8 — 540hp)' },
+    { value: 'convertible-v6',    label: 'V6 Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible' },
+    { value: 'convertible-gt500', label: 'Shelby GT500 Convertible' },
+  ],
+  '2005-2009': [
+    { value: 'v6',                label: 'V6 (4.0L SOHC)' },
+    { value: 'v6-premium',        label: 'V6 Premium (4.0L)' },
+    { value: 'gt',                label: 'GT (4.6L SOHC V8 — S197 Launch)' },
+    { value: 'gt-premium',        label: 'GT Premium (4.6L V8)' },
+    { value: 'gt-cs',             label: 'GT California Special (2007+)' },
+    { value: 'gt-deluxe',         label: 'GT Deluxe' },
+    { value: 'gt500',             label: 'Shelby GT500 (5.4L Supercharged — 2007+)' },
+    { value: 'gt500kr',           label: 'Shelby GT500KR (5.4L — 2008 only, 40th anniv.)' },
+    { value: 'convertible-v6',    label: 'V6 Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible' },
+  ],
+  // ── SN95 / New Edge (1994–2004) ─────────────────────
+  '2003-2004': [
+    { value: 'v6',                label: 'V6 (3.8L)' },
+    { value: 'gt',                label: 'GT (4.6L SOHC V8)' },
+    { value: 'mach-1',            label: 'Mach 1 (4.6L DOHC V8 — 305hp)' },
+    { value: 'cobra',             label: 'Cobra SVT (4.6L Supercharged DOHC — 390hp)' },
+    { value: 'cobra-convertible', label: 'Cobra SVT Convertible' },
+    { value: 'convertible-v6',    label: 'V6 Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible' },
+  ],
+  '1999-2002': [
+    { value: 'v6',                label: 'V6 (3.8L)' },
+    { value: 'gt',                label: 'GT (4.6L SOHC V8)' },
+    { value: 'cobra',             label: 'Cobra SVT (4.6L DOHC V8 — 305hp)' },
+    { value: 'cobra-r',           label: 'Cobra R (5.4L DOHC — 2000 only, 385hp, track)' },
+    { value: 'convertible-v6',    label: 'V6 Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible' },
+    { value: 'convertible-cobra', label: 'Cobra Convertible' },
+  ],
+  '1994-1998': [
+    { value: 'v6',                label: 'V6 (3.8L)' },
+    { value: 'gt',                label: 'GT (5.0L HO V8 — 1994–1995) / 4.6L (1996+)' },
+    { value: 'cobra',             label: 'Cobra SVT (5.0L — 1994–1995) / 4.6L DOHC (1996+)' },
+    { value: 'cobra-r',           label: 'Cobra R (5.8L — 1995 only, 300hp, race-only)' },
+    { value: 'gts',               label: 'GTS (Base, 1996–1998)' },
+    { value: 'convertible-v6',    label: 'V6 Convertible' },
+    { value: 'convertible-gt',    label: 'GT Convertible' },
+    { value: 'convertible-cobra', label: 'Cobra Convertible' },
+  ],
+  // ── Fox Body (1979–1993) ─────────────────────────────
+  '1987-1993': [
+    { value: 'lx-22',             label: 'LX 2.3L (4-cyl)' },
+    { value: 'lx-50',             label: 'LX 5.0L (V8 HO — Fox Body Icon)' },
+    { value: 'gt',                label: 'GT (5.0L V8 HO — 225hp)' },
+    { value: 'lx-conv',           label: 'LX Convertible 5.0L' },
+    { value: 'gt-conv',           label: 'GT Convertible' },
+    { value: 'cobra',             label: 'Cobra (1993 only — SVT, 5.0L, 235hp)' },
+  ],
+  '1982-1986': [
+    { value: 'l4',                label: '2.3L Turbo (Turbocharged 4-cyl)' },
+    { value: 'v6-232',            label: 'V6 3.8L' },
+    { value: 'gt-50',             label: 'GT (5.0L HO V8 — Reintroduced 1982)' },
+    { value: 'glx',               label: 'GLX (Luxury trim)' },
+    { value: 'svo',               label: 'SVO (2.3L Turbo, 175–205hp — 1984–1986)' },
+    { value: 'gt-conv',           label: 'GT Convertible' },
+  ],
+  '1979-1981': [
+    { value: 'l4-23',             label: '2.3L (Base 4-cyl)' },
+    { value: 'l6-33',             label: '3.3L Inline-6' },
+    { value: 'v8-50',             label: '5.0L V8 (255ci)' },
+    { value: 'ghia',              label: 'Ghia (Luxury Edition)' },
+    { value: 'cobra',             label: 'Cobra (Appearance Package)' },
+  ],
+  // ── Classic (1964–1973) ──────────────────────────────
+  '1971-1973': [
+    { value: 'base',              label: 'Base (250ci Inline-6 or 302 V8)' },
+    { value: 'mach-1',           label: 'Mach 1 (351 or 429 V8 options)' },
+    { value: 'boss-351',         label: 'Boss 351 (351ci — 1971 only, 330hp)' },
+    { value: 'grande',           label: 'Grande (Luxury Hardtop)' },
+    { value: 'convertible',      label: 'Convertible' },
+    { value: 'fastback',         label: 'SportsRoof Fastback' },
+  ],
+  '1969-1970': [
+    { value: 'base',             label: 'Base (250ci Inline-6)' },
+    { value: 'mach-1',          label: 'Mach 1 (351 or 390 or 428 V8)' },
+    { value: 'boss-302',        label: 'Boss 302 (302ci Hi-rev — Trans-Am racer)' },
+    { value: 'boss-429',        label: 'Boss 429 (429ci — Homologation special)' },
+    { value: 'grande',          label: 'Grande (Luxury trim)' },
+    { value: 'cobra-jet',       label: 'Cobra Jet (428CJ — Drag spec)' },
+    { value: 'convertible',     label: 'Convertible' },
+    { value: 'fastback',        label: 'SportsRoof Fastback' },
+  ],
+  '1967-1968': [
+    { value: 'base',            label: 'Base (289ci V8 or Inline-6)' },
+    { value: 'gt',              label: 'GT Equipment Group (289 or 390 V8)' },
+    { value: 'gta',             label: 'GTA (390ci — Auto trans GT)' },
+    { value: 'shelby-gt350',    label: 'Shelby GT350 (289ci 306hp)' },
+    { value: 'shelby-gt500',    label: 'Shelby GT500 (428ci Police Interceptor)' },
+    { value: 'convertible',     label: 'Convertible' },
+    { value: 'fastback',        label: '2+2 Fastback' },
+  ],
+  '1964-1966': [
+    { value: 'base-6',          label: 'Base (170ci or 200ci Inline-6)' },
+    { value: 'base-v8',         label: 'Base (260ci or 289ci V8)' },
+    { value: 'gt',              label: 'GT Equipment Group (289 Hi-Po K-code — 271hp)' },
+    { value: 'gt-350',          label: 'Shelby GT350 (289ci K-code — Race-prepped, 1965+)' },
+    { value: 'gt-350r',         label: 'Shelby GT350R (SCCA Race car, 1965)' },
+    { value: 'hardtop',         label: 'Hardtop Coupe' },
+    { value: 'convertible',     label: 'Convertible' },
+    { value: 'fastback',        label: '2+2 Fastback (1965+)' },
+  ],
+};
+
+/* Year → display label + trim key mapping */
+const YEARS = [
+  { value: 2025,        label: '2025 — S650' },
+  { value: 2024,        label: '2024 — S650' },
+  { value: 2023,        label: '2023 — S550' },
+  { value: 2022,        label: '2022 — S550' },
+  { value: 2021,        label: '2021 — S550' },
+  { value: 2020,        label: '2020 — S550' },
+  { value: 2019,        label: '2019 — S550' },
+  { value: 2018,        label: '2018 — S550' },
+  { value: 2017,        label: '2017 — S550' },
+  { value: 2016,        label: '2016 — S550' },
+  { value: 2015,        label: '2015 — S550' },
+  { value: '2013-2014', label: '2013–2014 — S197' },
+  { value: '2011-2012', label: '2011–2012 — S197' },
+  { value: '2010',      label: '2010 — S197' },
+  { value: '2005-2009', label: '2005–2009 — S197' },
+  { value: '2003-2004', label: '2003–2004 — SN95 New Edge' },
+  { value: '1999-2002', label: '1999–2002 — SN95 New Edge' },
+  { value: '1994-1998', label: '1994–1998 — SN95' },
+  { value: '1987-1993', label: '1987–1993 — Fox Body' },
+  { value: '1982-1986', label: '1982–1986 — Fox Body' },
+  { value: '1979-1981', label: '1979–1981 — Fox Body' },
+  { value: '1971-1973', label: '1971–1973 — Classic' },
+  { value: '1969-1970', label: '1969–1970 — Classic' },
+  { value: '1967-1968', label: '1967–1968 — Classic' },
+  { value: '1964-1966', label: '1964–1966 — Classic (Original)' },
+];
+
+/* ═══════════════════════════════════════════════════════
+   POPULATE YEAR DROPDOWNS ON LOAD
+═══════════════════════════════════════════════════════ */
+function buildYearOptions(selectEl, placeholder) {
+  selectEl.innerHTML = `<option value="">${placeholder}</option>`;
+  YEARS.forEach(y => {
+    const opt = document.createElement('option');
+    opt.value = y.value;
+    opt.textContent = y.label;
+    selectEl.appendChild(opt);
+  });
+}
+
+function buildModelOptions(selectEl, yearKey, placeholder = 'Select model...') {
+  const trims = TRIMS[yearKey];
+  selectEl.disabled = !trims || trims.length === 0;
+
+  if (!trims || trims.length === 0) {
+    selectEl.innerHTML = `<option value="">Select year first...</option>`;
+    return;
+  }
+
+  selectEl.innerHTML = `<option value="">${placeholder}</option>`;
+  trims.forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t.value;
+    opt.textContent = t.label;
+    selectEl.appendChild(opt);
+  });
+  selectEl.disabled = false;
+}
+
+/* Called when either YMM year changes */
+function syncYMM(source) {
+  if (source === 'hero') {
+    const yearVal = document.getElementById('heroYear').value;
+    const modelSel = document.getElementById('heroModel');
+    buildModelOptions(modelSel, yearVal);
+
+    // Animate model select to draw attention
+    modelSel.style.borderColor = yearVal ? 'var(--red)' : '';
+    if (yearVal) {
+      modelSel.closest('.ymm-select-styled').querySelector('select').focus();
+    }
+
+    // Sync the nav bar too if it's visible
+    const navYear = document.getElementById('navYear');
+    if (navYear.value !== yearVal) {
+      navYear.value = yearVal;
+      buildModelOptions(document.getElementById('navModel'), yearVal, 'Model');
+    }
+  } else {
+    const yearVal = document.getElementById('navYear').value;
+    buildModelOptions(document.getElementById('navModel'), yearVal, 'Model');
+
+    // Sync hero too
+    const heroYear = document.getElementById('heroYear');
+    if (heroYear.value !== yearVal) {
+      heroYear.value = yearVal;
+      buildModelOptions(document.getElementById('heroModel'), yearVal);
+    }
+  }
+}
+
+/* Initialise on DOM ready */
+document.addEventListener('DOMContentLoaded', () => {
+  buildYearOptions(document.getElementById('heroYear'), 'Select year...');
+  buildYearOptions(document.getElementById('navYear'), 'Year');
+});
+
+/* Quick-select chips fill in the year+model */
+const CHIP_PRESETS = {
+  '2020 GT500':  { year: 2020, model: 'gt500' },
+  '2023 Mach 1': { year: 2023, model: 'mach-1' },
+  'Fox Body':    { year: '1987-1993', model: 'lx-50' },
+  '2015 GT':     { year: 2015, model: 'gt' },
+  'Dark Horse':  { year: 2024, model: 'dark-horse' },
+};
+
+document.querySelectorAll('.ymm-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const preset = CHIP_PRESETS[chip.textContent.trim()];
+    if (!preset) return;
+
+    const heroYear  = document.getElementById('heroYear');
+    const heroModel = document.getElementById('heroModel');
+
+    heroYear.value = preset.year;
+    buildModelOptions(heroModel, preset.year);
+
+    // Small delay so options render before we set value
+    setTimeout(() => {
+      heroModel.value = preset.model;
+      heroModel.style.borderColor = 'var(--red)';
+    }, 50);
+
+    // Also sync nav
+    const navYear  = document.getElementById('navYear');
+    const navModel = document.getElementById('navModel');
+    navYear.value = preset.year;
+    buildModelOptions(navModel, preset.year, 'Model');
+    setTimeout(() => { navModel.value = preset.model; }, 50);
+
+    // Scroll to search button with a brief highlight
+    const searchBtn = document.querySelector('.ymm-search-full');
+    if (searchBtn) {
+      searchBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      searchBtn.style.transform = 'scale(1.03)';
+      setTimeout(() => { searchBtn.style.transform = ''; }, 300);
+    }
+  });
+});
+
+/* ═══════════════════════════════════════════════════════
+   BUILD LEVEL SWITCHER
+═══════════════════════════════════════════════════════ */
+const levels = {
+  beginner: {
+    accent: 'line-amber',
+    accentText: 'First Mustang.',
+    sub: "New to modifications? No problem. Our build guides walk you through the best starter upgrades — curated for your exact model.",
+    cta: 'Browse Beginner Builds →',
+    bg: 'lvl-beginner',
+  },
+  enthusiast: {
+    accent: 'line-red',
+    accentText: 'Mustang.',
+    sub: "Shop from 400+ verified manufacturers — direct to your door. Every part guaranteed to fit, or we cover the return.",
+    cta: 'Shop Parts →',
+    bg: 'lvl-enthusiast',
+  },
+  track: {
+    accent: 'line-red',
+    accentText: 'Track Beast.',
+    sub: "Big power mods, coilovers, big brakes, and aero from the brands that supply race teams — all verified, all direct.",
+    cta: 'Shop Track Builds →',
+    bg: 'lvl-track',
+  },
+};
+
+let currentLevel = 'enthusiast';
+
+function setLevel(level, btn) {
+  if (level === currentLevel) return;
+  currentLevel = level;
+
+  document.querySelectorAll('.level-btn').forEach(b => { b.className = 'level-btn'; });
+  btn.classList.add(`active-${level}`);
+
+  const cfg = levels[level];
+  const accent = document.getElementById('heroAccent');
+  const sub    = document.getElementById('heroSub');
+  const cta    = document.getElementById('heroCta');
+
+  [accent, sub, cta].forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(8px)'; });
+  setTimeout(() => {
+    accent.className = `hero-dynamic ${cfg.accent}`;
+    accent.textContent = cfg.accentText;
+    sub.textContent = cfg.sub;
+    cta.innerHTML = cfg.cta;
+    [accent, sub, cta].forEach(el => {
+      el.style.transition = 'opacity .4s, transform .4s';
+      el.style.opacity = '1'; el.style.transform = 'translateY(0)';
+    });
+  }, 240);
+
+  document.getElementById('heroBg').className = `hero-bg ${cfg.bg}`;
+}
+
+/* ═══════════════════════════════════════════════════════
+   NAV SCROLL + STICKY YMM
+═══════════════════════════════════════════════════════ */
+const mainNav = document.getElementById('mainNav');
+const navYMM  = document.getElementById('navYMM');
+const heroEl  = document.getElementById('hero');
+
+window.addEventListener('scroll', () => {
+  mainNav.classList.toggle('elevated', window.scrollY > 20);
+  navYMM.classList.toggle('visible', window.scrollY > (heroEl.offsetHeight - 100));
+}, { passive: true });
+
+/* ═══════════════════════════════════════════════════════
+   INTERSECTION REVEALS
+═══════════════════════════════════════════════════════ */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in');
+    e.target.querySelectorAll && e.target.querySelectorAll('.mrow-fill').forEach(b => {
+      setTimeout(() => { b.style.width = b.dataset.w + '%'; }, 200);
+    });
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+const mrowObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.mrow-fill').forEach(b => {
+        setTimeout(() => { b.style.width = b.dataset.w + '%'; }, 200);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+const mr = document.getElementById('marginRows');
+if (mr) mrowObs.observe(mr);
+
+/* ═══════════════════════════════════════════════════════
+   FILTER PILLS (functional product filtering)
+═══════════════════════════════════════════════════════ */
+document.querySelectorAll('.filter-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    const filter = btn.textContent.trim().toLowerCase();
+    filterProducts(filter);
+  });
+});
+
+function filterProducts(filter) {
+  const cards = document.querySelectorAll('.prod-card');
+  cards.forEach(card => {
+    const cats = (card.dataset.categories || 'all').split(',');
+    const show = filter === 'all' || cats.includes(filter);
+    card.style.transition = 'opacity .3s, transform .3s';
+    if (show) {
+      card.style.opacity = '1';
+      card.style.transform = '';
+      card.style.display = '';
+    } else {
+      card.style.opacity = '0';
+      card.style.transform = 'scale(0.95)';
+      setTimeout(() => { if (!card.style.opacity || card.style.opacity === '0') card.style.display = 'none'; }, 300);
+    }
+  });
+}
+
+function filterFromCategory(filterName) {
+  setTimeout(() => {
+    const pills = document.querySelectorAll('.filter-pill');
+    pills.forEach(p => {
+      p.classList.remove('on');
+      if (p.textContent.trim() === filterName) p.classList.add('on');
+    });
+    filterProducts(filterName.toLowerCase());
+  }, 600);
+}
+
+/* ═══════════════════════════════════════════════════════
+   SMOOTH SCROLL (with nav active state)
+═══════════════════════════════════════════════════════ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+      if (a.classList.contains('nav-link')) {
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        a.classList.add('active');
+      }
+    }
+  });
+});
+
+/* ═══════════════════════════════════════════════════════
+   TOAST NOTIFICATION SYSTEM
+═══════════════════════════════════════════════════════ */
+function showToast(message, icon, type) {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast' + (type ? ' toast-' + type : '');
+  toast.innerHTML = '<span class="toast-icon">' + icon + '</span><span class="toast-msg">' + message + '</span><button class="toast-close" onclick="dismissToast(this.parentElement)">✕</button>';
+  container.appendChild(toast);
+  setTimeout(() => dismissToast(toast), 4000);
+}
+
+function dismissToast(toast) {
+  if (!toast || toast.classList.contains('toast-out')) return;
+  toast.classList.add('toast-out');
+  setTimeout(() => toast.remove(), 300);
+}
+
+/* ═══════════════════════════════════════════════════════
+   CART SYSTEM
+═══════════════════════════════════════════════════════ */
+let cart = [];
+
+function addToCart(name, price) {
+  const existing = cart.find(item => item.name === name);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ name: name, price: price, qty: 1 });
+  }
+  updateCartUI();
+  showToast(name + ' added to cart', '✅', 'cart');
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCartUI();
+  renderCartPreview();
+}
+
+function updateCartUI() {
+  const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+  const countEl = document.getElementById('cartCount');
+  countEl.textContent = totalQty;
+  countEl.style.display = totalQty > 0 ? 'flex' : 'none';
+}
+
+function renderCartPreview() {
+  const itemsEl = document.getElementById('cartItems');
+  const footerEl = document.getElementById('cartFooter');
+  const totalEl = document.getElementById('cartTotal');
+
+  if (cart.length === 0) {
+    itemsEl.innerHTML = '<div class="cart-empty"><span class="cart-empty-icon">🛒</span>Your cart is empty.<br>Browse parts and add items to get started.</div>';
+    footerEl.style.display = 'none';
+    return;
+  }
+
+  const emojis = { 'Borla': '🔊', 'Steeda': '🌀', 'Roush': '💨', 'KW': '🛞' };
+  let html = '';
+  let total = 0;
+  cart.forEach((item, i) => {
+    const key = Object.keys(emojis).find(k => item.name.includes(k)) || '';
+    const emoji = emojis[key] || '📦';
+    total += item.price * item.qty;
+    html += '<div class="cart-item">' +
+      '<div class="cart-item-emoji">' + emoji + '</div>' +
+      '<div class="cart-item-info"><div class="cart-item-name">' + item.name + (item.qty > 1 ? ' ×' + item.qty : '') + '</div>' +
+      '<div class="cart-item-price">$' + (item.price * item.qty).toLocaleString() + '</div></div>' +
+      '<button class="cart-item-remove" onclick="removeFromCart(' + i + ')">✕</button></div>';
+  });
+  itemsEl.innerHTML = html;
+  footerEl.style.display = 'block';
+  totalEl.textContent = '$' + total.toLocaleString();
+}
+
+function showCartPreview() {
+  const preview = document.getElementById('cartPreview');
+  const isOpen = preview.classList.contains('open');
+  closeSearchOverlay();
+  if (isOpen) {
+    closeCartPreview();
+  } else {
+    renderCartPreview();
+    preview.classList.add('open');
+  }
+}
+
+function closeCartPreview() {
+  document.getElementById('cartPreview').classList.remove('open');
+}
+
+/* ═══════════════════════════════════════════════════════
+   SEARCH OVERLAY
+═══════════════════════════════════════════════════════ */
+let searchOpen = false;
+
+function toggleSearch() {
+  searchOpen = !searchOpen;
+  const overlay = document.getElementById('searchOverlay');
+  closeCartPreview();
+  if (searchOpen) {
+    overlay.classList.add('open');
+    setTimeout(() => document.getElementById('searchInput').focus(), 100);
+  } else {
+    closeSearchOverlay();
+  }
+}
+
+function closeSearchOverlay() {
+  searchOpen = false;
+  document.getElementById('searchOverlay').classList.remove('open');
+  document.getElementById('searchInput').value = '';
+}
+
+/* ═══════════════════════════════════════════════════════
+   MOBILE MENU
+═══════════════════════════════════════════════════════ */
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const backdrop = document.getElementById('mobileMenuBackdrop');
+  const hamburger = document.querySelector('.nav-hamburger');
+  const isOpen = menu.classList.contains('open');
+
+  if (isOpen) {
+    menu.classList.remove('open');
+    backdrop.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  } else {
+    closeCartPreview();
+    closeSearchOverlay();
+    menu.classList.add('open');
+    backdrop.classList.add('open');
+    hamburger.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function searchFor(chip) {
+  const term = chip.textContent.trim();
+  document.getElementById('searchInput').value = term;
+  showToast('Showing results for "' + term + '"', '🔍', 'info');
+  closeSearchOverlay();
+  document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+}
+
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closeSearchOverlay(); return; }
+  if (e.key === 'Enter' && this.value.trim()) {
+    const term = this.value.trim();
+    showToast('Showing results for "' + term + '"', '🔍', 'info');
+    closeSearchOverlay();
+    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    if (searchOpen) closeSearchOverlay();
+    closeCartPreview();
+  }
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    toggleSearch();
+  }
+});
+
+/* ═══════════════════════════════════════════════════════
+   HEART / SAVE TOGGLE
+═══════════════════════════════════════════════════════ */
+function toggleHeart(el, event) {
+  event.stopPropagation();
+  el.classList.toggle('loved');
+  const isLoved = el.classList.contains('loved');
+  el.textContent = isLoved ? '♥' : '♡';
+  const name = el.closest('.prod-card').querySelector('.prod-name').textContent;
+  if (isLoved) {
+    showToast(name + ' saved to wishlist', '♥', 'success');
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   YMM SEARCH HANDLER
+═══════════════════════════════════════════════════════ */
+function handleSearch(source) {
+  const yearEl = document.getElementById(source === 'hero' ? 'heroYear' : 'navYear');
+  const modelEl = document.getElementById(source === 'hero' ? 'heroModel' : 'navModel');
+  const yearVal = yearEl.value;
+  const modelVal = modelEl.value;
+
+  if (!yearVal) {
+    showToast('Please select a year first', '⚠️', 'info');
+    yearEl.focus();
+    yearEl.style.borderColor = 'var(--amber)';
+    setTimeout(() => { yearEl.style.borderColor = ''; }, 2000);
+    return;
+  }
+
+  const yearLabel = yearEl.options[yearEl.selectedIndex].text;
+  const modelLabel = modelVal ? modelEl.options[modelEl.selectedIndex].text : 'All trims';
+
+  showToast('Searching parts for ' + yearLabel + ' — ' + modelLabel, '🔍', 'success');
+  document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ═══════════════════════════════════════════════════════
+   SCROLL TO YMM HELPER
+═══════════════════════════════════════════════════════ */
+function scrollToYMM() {
+  setTimeout(() => {
+    const card = document.querySelector('.hero-ymm-card');
+    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const yearSel = document.getElementById('heroYear');
+    yearSel.style.borderColor = 'var(--red)';
+    setTimeout(() => { yearSel.style.borderColor = ''; }, 2000);
+  }, 300);
+}
+
+/* ═══════════════════════════════════════════════════════
+   BRAND PILLS (clickable → filter)
+═══════════════════════════════════════════════════════ */
+document.querySelectorAll('.brand-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    const brand = pill.textContent.trim();
+    showToast('Browsing ' + brand + ' products', '🏷️', 'info');
+    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+/* ═══════════════════════════════════════════════════════
+   GENERATION / FITMENT CHIPS
+═══════════════════════════════════════════════════════ */
+document.querySelectorAll('.fit-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const gen = chip.textContent.trim();
+    showToast('Browsing parts for ' + gen, '🚗', 'info');
+    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+/* ═══════════════════════════════════════════════════════
+   CLOSE OVERLAYS ON OUTSIDE CLICK
+═══════════════════════════════════════════════════════ */
+document.addEventListener('click', function(e) {
+  const cartPreview = document.getElementById('cartPreview');
+  const cartBtn = document.getElementById('cartBtn');
+  if (cartPreview.classList.contains('open') && !cartPreview.contains(e.target) && !cartBtn.contains(e.target)) {
+    closeCartPreview();
+  }
+});
+
+/* Init cart count display */
+updateCartUI();
+</script>
+</body>
+</html>
